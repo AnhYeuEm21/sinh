@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#064e3b">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Sinh 11 KNTT • 6 Bài Chuẩn SGK Ôn Thi Cấp Tốc</title>
+    <title>SINH 11 • KNTT - ÔN THI CẤP TỐC GIỮA KÌ I (DỄ HIỂU - CHUẨN SGK)</title>
     <style>
         :root {
             --bg-primary: #090e17;
@@ -52,14 +50,13 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            font-size: 15px;
-            padding-bottom: calc(75px + var(--safe-bottom));
+            font-size: 14.5px;
             overflow-x: hidden;
             transition: background-color 0.2s, color 0.2s;
         }
 
-        /* Prevent text selection bug on Android tap */
-        .bottom-nav, .nav-item, .chip, .group-header, .tf-touch-btn, .btn-view-ans, .icon-btn, .option-mobile, .btn-exam-submit, .nav-tab {
+        /* PREVENT TEXT SELECTION / TOUCH BUGS */
+        .bottom-nav, .nav-item, .chip, .group-header, .btn-view-ans, .icon-btn, .top-tab-btn, .sidebar-link {
             user-select: none;
             -webkit-user-select: none;
             -webkit-touch-callout: none;
@@ -70,19 +67,17 @@
         .app-header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-color);
-            padding: calc(var(--safe-top) + 8px) 16px 10px 16px;
+            padding: calc(var(--safe-top) + 8px) 24px 8px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        [data-theme="light"] .app-header {
-            background: rgba(255, 255, 255, 0.95);
+            gap: 16px;
+            height: 64px;
         }
 
         .brand-wrap {
@@ -92,732 +87,39 @@
         }
 
         .brand-badge {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, #10b981, #047857);
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #047857);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 2px 8px var(--accent-glow);
+            font-size: 19px;
+            box-shadow: 0 4px 10px var(--accent-glow);
         }
 
         .brand-wrap h1 {
-            font-size: 1.05rem;
+            font-size: 16px;
             font-weight: 800;
+            letter-spacing: -0.02em;
             color: var(--text-primary);
             line-height: 1.2;
         }
 
         .brand-wrap p {
-            font-size: 0.72rem;
+            font-size: 10px;
+            font-weight: 700;
             color: var(--accent);
-            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .header-btns {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .icon-btn:active {
-            transform: scale(0.92);
-        }
-
-        /* SEARCH BAR */
-        .search-container {
-            padding: 10px 14px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .search-input-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .search-input-wrap span {
-            position: absolute;
-            left: 12px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .search-input {
-            width: 100%;
-            height: 42px;
-            padding: 0 12px 0 38px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 15px;
-            color: var(--text-primary);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: var(--accent);
-        }
-
-        /* FILTER CHIPS */
-        .filter-chips {
-            display: flex;
-            gap: 8px;
-            padding: 10px 14px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .filter-chips::-webkit-scrollbar {
-            display: none;
-        }
-
-        .chip {
-            padding: 6px 14px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .chip.active {
-            background: var(--accent);
-            color: #ffffff;
-            border-color: var(--accent);
-            box-shadow: 0 2px 8px var(--accent-glow);
-        }
-
-        /* MAIN CONTAINER */
-        main {
-            max-width: 1000px;
-            margin: 10px auto;
-            padding: 0 14px;
-        }
-
-        /* TAB PANES */
-        .tab-pane {
-            display: none;
-            animation: fadeIn 0.25s ease;
-        }
-
-        .tab-pane.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* HERO CARD */
-        .hero-banner {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(6, 78, 59, 0.22));
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 14px;
-        }
-
-        .hero-banner h2 {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .hero-banner p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-
-        /* ACCORDION GROUP CARD */
-        .group-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            margin-bottom: 14px;
-            overflow: hidden;
-            transition: border-color 0.2s;
-        }
-
-        .group-header {
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .lesson-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 6px;
-            display: inline-block;
-            margin-bottom: 4px;
-        }
-
-        .group-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.35;
-        }
-
-        .group-subtitle {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .group-arrow {
-            font-size: 14px;
-            color: var(--accent);
-            transition: transform 0.25s ease;
-            margin-left: 8px;
-        }
-
-        .group-card.open .group-arrow {
-            transform: rotate(180deg);
-        }
-
-        .group-body {
-            display: none;
-            padding: 16px;
-            border-top: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            font-size: 0.92rem;
-            line-height: 1.65;
-        }
-
-        .group-card.open .group-body {
-            display: block;
-        }
-
-        /* HIGHLIGHT STYLING */
-        h4 {
-            font-size: 1rem;
-            color: var(--accent);
-            margin: 14px 0 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        h4:first-child {
-            margin-top: 0;
-        }
-
-        p {
-            margin-bottom: 8px;
-        }
-
-        strong {
-            color: #10b981;
-            font-weight: 700;
-        }
-
-        [data-theme="light"] strong {
-            color: #047857;
-        }
-
-        .note-box {
-            background: rgba(16, 185, 129, 0.08);
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 0 10px 10px 0;
-            margin: 12px 0;
-        }
-
-        .note-box ul {
-            padding-left: 18px;
-        }
-
-        .note-box li {
-            margin-bottom: 6px;
-        }
-
-        .highlight-card {
-            background: var(--bg-card);
-            border: 1px dashed var(--accent);
-            padding: 14px;
-            border-radius: 10px;
-            margin: 12px 0;
-        }
-
-        .formula-box {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.92rem;
-            color: #10b981;
-            margin: 10px 0;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .card-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
-            margin: 12px 0;
-        }
-
-        .card-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin: 12px 0;
-        }
-
-        .sub-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 12px 14px;
-            border-radius: 10px;
-        }
-
-        .sub-card-title {
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-        }
-
-        .tag-pill {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-top: 6px;
-        }
-
-        /* TABLE MOBILE WRAPPER */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin: 12px 0;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .scroll-hint {
-            font-size: 11px;
-            color: var(--accent);
-            font-weight: 600;
-            padding: 6px 12px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        table.data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            min-width: 480px;
-        }
-
-        table.data-table th, table.data-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-color);
-            text-align: left;
-        }
-
-        table.data-table th {
-            background: var(--bg-card);
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* ESSAY CARDS */
-        .essay-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        .essay-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .essay-tag {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .essay-score {
-            color: var(--warning);
-            font-weight: 800;
-            font-size: 13px;
-        }
-
-        .essay-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.45;
-            margin-bottom: 12px;
-        }
-
-        .btn-view-ans {
-            width: 100%;
-            height: 44px;
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid var(--accent);
-            border-radius: 10px;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
-
-        .btn-view-ans:active {
-            background: var(--accent);
-            color: white;
-        }
-
-        .essay-ans-body {
-            display: none;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 16px;
-            margin-top: 12px;
-            font-size: 0.92rem;
-            line-height: 1.7;
-        }
-
-        .essay-ans-body.show {
-            display: block;
-            animation: fadeIn 0.25s ease;
-        }
-
-        /* EXAM ENGINE */
-        .exam-sticky-bar {
-            position: sticky;
-            top: 56px;
-            z-index: 95;
-            background: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-        }
-
-        [data-theme="light"] .exam-sticky-bar {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .timer-badge {
-            font-size: 1.2rem;
-            font-weight: 800;
-            font-family: monospace;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-exam-submit {
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-exam-submit:active {
-            transform: scale(0.95);
-        }
-
-        .question-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 14px;
-            transition: all 0.2s;
-        }
-
-        .question-card.correct {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.06);
-        }
-
-        .question-card.incorrect {
-            border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.06);
-        }
-
-        .q-header {
-            font-size: 0.98rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .option-mobile {
-            min-height: 48px;
-            padding: 10px 14px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .option-mobile:active {
-            background: var(--bg-card-hover);
-        }
-
-        .option-mobile.selected {
-            border-color: var(--accent);
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .option-mobile input[type="radio"] {
-            accent-color: var(--accent);
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .tf-row {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-        }
-
-        .tf-text {
-            font-size: 0.88rem;
-            margin-bottom: 8px;
-            line-height: 1.45;
-        }
-
-        .tf-btn-pair {
-            display: flex;
-            gap: 8px;
-        }
-
-        .tf-touch-btn {
-            flex: 1;
-            height: 42px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: 13px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-
-        .tf-touch-btn.active-true {
-            background: #10b981;
-            color: white;
-            border-color: #10b981;
-        }
-
-        .tf-touch-btn.active-false {
-            background: #ef4444;
-            color: white;
-            border-color: #ef4444;
-        }
-
-        .short-input-mobile {
-            width: 100%;
-            height: 46px;
-            font-size: 16px;
-            padding: 0 14px;
-            border-radius: 10px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            outline: none;
-            margin-top: 6px;
-        }
-
-        .short-input-mobile:focus {
-            border-color: var(--accent);
-        }
-
-        .exp-pop {
-            display: none;
-            background: var(--bg-primary);
-            border-left: 3px solid var(--info);
-            border-radius: 6px;
-            padding: 10px 12px;
-            margin-top: 8px;
-            font-size: 0.86rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .exp-pop.show {
-            display: block;
-        }
-
-        .score-card-mobile {
-            display: none;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
-            border: 2px solid var(--accent);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 14px;
-            text-align: center;
-        }
-
-        .big-score {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin: 4px 0;
-        }
-
-        /* BOTTOM APP NAVIGATION BAR (Always accessible on mobile) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            background: rgba(17, 24, 39, 0.96);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 4px calc(6px + var(--safe-bottom)) 4px;
-        }
-
-        [data-theme="light"] .bottom-nav {
-            background: rgba(255, 255, 255, 0.96);
-        }
-
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            padding: 4px 0;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.15s ease;
-        }
-
-        .nav-item-icon {
-            font-size: 20px;
-            line-height: 1;
-        }
-
-        .nav-item-label {
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .nav-item.active {
-            color: var(--accent);
-        }
-
-        .nav-item.active .nav-item-icon {
-            transform: translateY(-2px);
-        }
-    
-        /* ==================== RESPONSIVE DUAL UI (DESKTOP + MOBILE) ==================== */
-        .app-layout {
-            display: flex;
-            width: 100%;
-            min-height: calc(100vh - 64px);
-        }
-
-        /* Top Nav Tabs (Desktop) */
+        /* TOP NAV TABS (DESKTOP) */
         .top-nav-tabs {
-            display: none; /* Default hidden on mobile */
+            display: none;
             align-items: center;
             gap: 6px;
-            background: var(--bg-secondary);
+            background: var(--bg-card);
             padding: 4px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
@@ -837,7 +139,6 @@
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
-            user-select: none;
         }
 
         .top-tab-btn:hover {
@@ -851,9 +152,41 @@
             box-shadow: 0 2px 10px var(--accent-glow);
         }
 
-        /* Desktop Sidebar */
+        .header-btns {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.15s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-card-hover);
+        }
+
+        /* DUAL LAYOUT */
+        .app-layout {
+            display: flex;
+            width: 100%;
+            min-height: calc(100vh - 64px);
+        }
+
+        /* DESKTOP SIDEBAR */
         .desktop-sidebar {
-            display: none; /* Default hidden on mobile */
+            display: none;
             width: 320px;
             min-width: 320px;
             background: var(--bg-secondary);
@@ -938,7 +271,6 @@
             cursor: pointer;
             transition: all 0.15s ease;
             border: 1px solid transparent;
-            user-select: none;
         }
 
         .sidebar-link .link-num {
@@ -972,7 +304,7 @@
             color: #ffffff;
         }
 
-        /* Main Content wrapper */
+        /* MAIN CONTENT */
         .main-content {
             flex: 1;
             min-width: 0;
@@ -982,7 +314,388 @@
             width: 100%;
         }
 
-        /* DESKTOP MEDIA QUERY (>= 1024px) */
+        /* SEARCH BAR */
+        .search-container {
+            margin-bottom: 14px;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrap span {
+            position: absolute;
+            left: 14px;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 14px 12px 40px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* FILTER CHIPS */
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+            scrollbar-width: none;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .chip:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .chip.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px var(--accent-glow);
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(30, 41, 59, 0.7));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+        }
+
+        .hero-banner h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .hero-banner p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+        }
+
+        /* EASY EXPLAIN CALLOUT */
+        .easy-explain {
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 4px solid var(--accent);
+            padding: 10px 14px;
+            border-radius: 0 10px 10px 0;
+            margin: 10px 0 16px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .easy-explain strong {
+            color: var(--accent);
+        }
+
+        /* GROUP CARDS (LESSONS & COMPARISONS) */
+        .group-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+            transition: background 0.15s;
+        }
+
+        .group-header:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-right: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .group-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .group-arrow {
+            font-size: 12px;
+            color: var(--text-muted);
+            transition: transform 0.2s ease;
+        }
+
+        .group-card.open .group-arrow {
+            transform: rotate(180deg);
+        }
+
+        .group-body {
+            display: none;
+            padding: 18px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+
+        .group-card.open .group-body {
+            display: block;
+        }
+
+        .group-body h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 16px 0 8px 0;
+        }
+
+        .group-body h4:first-child {
+            margin-top: 0;
+        }
+
+        /* NOTE BOX & HIGHLIGHT CARD */
+        .note-box {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 10px 0;
+        }
+
+        .note-box ul, .note-box ol {
+            margin-left: 20px;
+        }
+
+        .note-box li {
+            margin-bottom: 6px;
+        }
+
+        .highlight-card {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .formula-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 10px 0;
+            font-size: 15px;
+            color: #34d399;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* SUB CARDS GRID */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        .sub-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .sub-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+
+        /* DATA TABLE */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .data-table th, .data-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .data-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* ESSAY CARD */
+        .essay-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .essay-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .essay-tag {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .essay-score {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent);
+            background: rgba(16, 185, 129, 0.12);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .essay-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        /* BOTTOM APP NAVIGATION (MOBILE) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(17, 24, 39, 0.96);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 12px calc(var(--safe-bottom) + 4px);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: all 0.15s ease;
+        }
+
+        .nav-item-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .nav-item-label {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        /* TAB PANES */
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* MEDIA QUERIES */
         @media (min-width: 1024px) {
             .app-header {
                 padding: 10px 28px;
@@ -995,7 +708,7 @@
                 display: flex !important;
             }
             .bottom-nav {
-                display: none !important; /* Ẩn triệt để thanh đáy trên máy tính */
+                display: none !important;
             }
             body {
                 padding-bottom: 0 !important;
@@ -1007,56 +720,20 @@
             }
             .hero-banner {
                 padding: 24px 30px;
-                margin-bottom: 24px;
             }
             .hero-banner h2 {
                 font-size: 24px;
             }
-            .hero-banner p {
-                font-size: 14.5px;
-            }
-            .search-container {
-                margin-bottom: 20px;
-            }
-            .search-input {
-                font-size: 14px;
-                padding: 13px 14px 13px 40px;
-            }
-            .filter-chips {
-                margin-bottom: 24px;
-            }
-            .filter-chips .chip {
-                font-size: 13px;
-                padding: 7px 16px;
-            }
-            .group-card {
-                margin-bottom: 20px;
-            }
-            .group-header {
-                padding: 16px 20px;
-            }
-            .group-title {
-                font-size: 17px;
-            }
-            .group-body {
-                padding: 22px;
-            }
             .card-grid-2 {
-                display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
             .card-grid-3 {
-                display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 16px;
             }
-            .scroll-hint {
-                display: none; /* Không cần gợi ý vuốt trên máy tính màn hình to */
-            }
         }
 
-        /* MOBILE MEDIA QUERY (< 1024px) */
         @media (max-width: 1023px) {
             .top-nav-tabs {
                 display: none !important;
@@ -1073,7 +750,6 @@
                 max-width: 100%;
             }
         }
-
     </style>
 </head>
 <body data-theme="dark">
@@ -1084,9 +760,10 @@
             <div class="brand-badge">🌿</div>
             <div>
                 <h1>SINH 11 • KNTT</h1>
-                <p>6 BÀI CHUẨN SGK • ÔN THI CẤP TỐC</p>
+                <p>6 BÀI CHUẨN SGK • DỄ HIỂU NHẤT</p>
             </div>
         </div>
+
         <!-- DESKTOP TOP NAV TABS -->
         <nav class="top-nav-tabs">
             <button class="top-tab-btn active" data-tab="tab-theory" onclick="switchMasterTab('tab-theory', this)">
@@ -1122,7 +799,7 @@
     <!-- DUAL RESPONSIVE LAYOUT WRAPPER -->
     <div class="app-layout">
 
-        <!-- DESKTOP SIDEBAR NAVIGATION (CỐ ĐỊNH BÊN TRÁI MÁY TÍNH) -->
+        <!-- DESKTOP SIDEBAR NAVIGATION -->
         <aside class="desktop-sidebar" id="desktopSidebar">
             <div class="sidebar-header">
                 <span class="sidebar-title">Mục Lục Chương Trình</span>
@@ -1134,6 +811,9 @@
                     <span>🌿</span> 6 Bài Học SGK (Trang 5-42)
                 </div>
                 <div class="sidebar-links">
+                    <a class="sidebar-link" data-lesson-link="tudien" onclick="goToLesson('tudien', this)" style="border: 1px dashed rgba(59, 130, 246, 0.4); color: #60a5fa;">
+                        <span class="link-num" style="background:#3b82f6; color:#fff;">💡</span> Bản Dịch Tiếng Người
+                    </a>
                     <a class="sidebar-link active" data-lesson-link="bai-1" onclick="goToLesson('bai-1', this)">
                         <span class="link-num">B1</span> Khái Quát TĐC & CHNL
                     </a>
@@ -1235,7 +915,7 @@
             </div>
         </aside>
 
-        <!-- MAIN APP CONTENT AREA (DÀN TRÀN MÀN HÌNH MÁY TÍNH & CO GIÃN CHO ĐIỆN THOẠI) -->
+        <!-- MAIN APP CONTENT AREA -->
         <main class="main-content" id="mainContent">
 
             <!-- SEARCH BAR -->
@@ -1246,9 +926,10 @@
                 </div>
             </div>
 
-            <!-- FILTER CHIPS (6 BÀI CHUẨN SGK) -->
+            <!-- FILTER CHIPS -->
             <div class="filter-chips">
                 <div class="chip active" onclick="filterByLesson('all', this)">Tất cả (6 Bài)</div>
+                <div class="chip" onclick="filterByLesson('tudien', this)">💡 Từ Điển Dễ Hiểu</div>
                 <div class="chip" onclick="filterByLesson('bai-1', this)">Bài 1 (Khái Quát TĐC)</div>
                 <div class="chip" onclick="filterByLesson('bai-2', this)">Bài 2 (Nước & Khoáng)</div>
                 <div class="chip" onclick="filterByLesson('bai-3', this)">Bài 3 (Dinh Dưỡng N)</div>
@@ -1256,810 +937,875 @@
                 <div class="chip" onclick="filterByLesson('bai-5', this)">Bài 5 (Năng Suất Cây)</div>
                 <div class="chip" onclick="filterByLesson('bai-6', this)">Bài 6 (Hô Hấp)</div>
             </div>
-        <!-- TAB 1: 6 BÀI LÝ THUYẾT SGK -->
-        <div id="tab-theory" class="tab-pane active">
-            <div class="hero-banner">
-                <h2>6 Bài Chuẩn SGK Kết Nối Tri Thức (Trang 5 - 42)</h2>
-                <p>Được biên soạn từ 17 trang sách giáo khoa Hành Trang Số: Tóm tắt trọng tâm, <strong>in đậm từ khóa bắt buộc phải học thuộc</strong>, không lan man, không quá ngắn.</p>
+
+            <!-- TAB 1: 6 BÀI LÝ THUYẾT SGK -->
+            <div id="tab-theory" class="tab-pane active">
+                <div class="hero-banner">
+                    <h2>6 Bài Chuẩn SGK Kết Nối Tri Thức (Trang 5 - 42)</h2>
+                    <p>Biên soạn 100% bám sát 17 trang sách giáo khoa: Diễn đạt <strong>bình dị, siêu dễ hiểu</strong>, lược bỏ sạch các phần ra rìa, <strong>in đậm từ khóa bắt buộc học thuộc</strong> để khoanh trắc nghiệm và viết tự luận.</p>
+                </div>
+
+                <!-- TỪ ĐIỂN 15 THUẬT NGỮ DỄ HIỂU NHẤT -->
+                <div id="lessonsContainer">
+                    
+<div class="group-card open" id="card-tudien" data-lesson="tudien">
+    <div class="group-header" onclick="toggleCard('card-tudien')" style="background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(59,130,246,0.18));">
+        <div>
+            <span class="lesson-badge" style="background:#3b82f6;">MẸO HỌC</span>
+            <span class="group-title">💡 BẢN DỊCH "TIẾNG NGƯỜI" (Giải Thích 15 Thuật Ngữ Khó Nhất Bằng Ngôn Ngữ Dễ Hiểu)</span>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Dành riêng cho các bạn thấy môn Sinh nhiều từ khó hiểu • Đọc 1 lần là nhớ ngay</div>
+        </div>
+        <div class="group-arrow">▼</div>
+    </div>
+    <div class="group-body">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Từ ngữ trong SGK</th>
+                        <th style="width: 45%;">Dịch nôm na siêu dễ hiểu</th>
+                        <th style="width: 30%;">Mẹo khoanh trắc nghiệm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Đồng hóa</strong></td>
+                        <td>Như việc <strong>ăn cơm để xây đắp cơ bắp</strong>: gom các chất nhỏ ráp thành chất lớn và tích lũy năng lượng.</td>
+                        <td>Gặp từ <em>"tổng hợp chất mới"</em>, <em>"tích lũy năng lượng"</em> &rarr; Chọn Đồng hóa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dị hóa</strong></td>
+                        <td>Như việc <strong>đốt củi sưởi ấm</strong>: bẻ gãy thức ăn để lấy năng lượng ATP chạy nhảy và xả nhiệt ra ngoài.</td>
+                        <td>Gặp từ <em>"phân giải chất"</em>, <em>"giải phóng ATP"</em> &rarr; Chọn Dị hóa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cân bằng nội môi</strong></td>
+                        <td>Giữ cho <strong>môi trường bên trong cơ thể luôn bình thường</strong> (nhiệt độ 37°C, huyết áp, đường máu ổn định).</td>
+                        <td>Thải phân, nước tiểu, mồ hôi &rarr; Để duy trì cân bằng nội môi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hạt ở trạng thái tiềm sinh</strong></td>
+                        <td>Hạt đang <strong>"ngủ đông"</strong>: độ ẩm cực thấp (&lt;13%), thở rất yếu để không bị thối hỏng.</td>
+                        <td>Ngâm nước &rarr; Hạt hút nước, làm mềm vỏ, đánh thức enzyme hô hấp dậy.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Đai Caspary (ở nội bì)</strong></td>
+                        <td>Như cái <strong>barie / trạm kiểm soát hải quan</strong> chống thấm nước. Chặn đường gian bào không cho đi chui qua khe hở, ép nước phải đi qua màng tế bào để kiểm tra chất độc.</td>
+                        <td>Hỏi <em>"vì sao nước qua nội bì phải đi qua màng sinh chất?"</em> &rarr; Do đai Caspary chặn con đường gian bào.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Con đường gian bào</strong></td>
+                        <td>Đi men theo <strong>khe hở giữa các vách tế bào</strong>. Đi rất nhanh nhưng không được kiểm tra cho đến khi gặp đai Caspary.</td>
+                        <td>Đi qua khoảng trống giữa các vách tế bào &rarr; Con đường gian bào.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Con đường tế bào chất</strong></td>
+                        <td>Đi <strong>xuyên thẳng vào ruột tế bào</strong> rồi chuyền qua các cầu nối. Đi chậm hơn nhưng an toàn.</td>
+                        <td>Đi xuyên qua màng và chất nguyên sinh &rarr; Con đường tế bào chất.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mạch gỗ (Xylem)</strong></td>
+                        <td>Ống nước bằng <strong>tế bào chết rỗng ruột</strong>, bơm <strong>nước và phân khoáng từ rễ đi lên lá</strong> (1 chiều).</td>
+                        <td>Động lực chính kéo nước lên &rarr; Lực hút do thoát hơi nước ở lá.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mạch rây (Phloem)</strong></td>
+                        <td>Đường ống bằng <strong>tế bào sống</strong>, chở <strong>đường saccarozơ từ lá đi xuống rễ, củ, quả</strong>.</td>
+                        <td>Vận chuyển đường hữu cơ &rarr; Dòng mạch rây.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cơ chế đóng mở khí khổng</strong></td>
+                        <td>Tế bào có <strong>vách trong dày, vách ngoài mỏng</strong>. No nước &rarr; vách mỏng căng kéo vách dày cong theo làm lỗ mở to. Mất nước &rarr; xẹp lại làm lỗ đóng.</td>
+                        <td>Hút no nước thì mở, mất nước thì đóng.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Khử nitrate (NO₃⁻ &rarr; NH₄⁺)</strong></td>
+                        <td><strong>"Gọt vỏ chế biến đạm"</strong>: Cây chỉ ăn được dạng NH₄⁺, nên khi hút NO₃⁻ từ đất phải đổi thành NH₄⁺ mới dùng để tạo protein.</td>
+                        <td>Thứ tự khử: NO₃⁻ (nitrate) &rarr; NO₂⁻ (nitrite) &rarr; NH₄⁺ (amôn).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hình thành Amide</strong></td>
+                        <td><strong>"Cách cây giải độc đạm thừa"</strong>: Khi NH₄⁺ nhiều quá sẽ gây độc, cây đem gắn NH₄⁺ vào axit amin để cất trữ thành amide.</td>
+                        <td>Ý nghĩa tạo amide: Giải độc NH₄⁺ thừa và dự trữ nitơ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pha sáng & Pha tối quang hợp</strong></td>
+                        <td>• <strong>Pha sáng:</strong> Sạc pin mặt trời ở màng thylakoid (chẻ H₂O nhả khí O₂ và nạp 2 cục pin ATP, NADPH).<br>
+                        • <strong>Pha tối:</strong> Bếp nấu đường ở chất nền stroma (dùng pin ATP, NADPH từ pha sáng để ráp CO₂ thành đường glucose).</td>
+                        <td>Khí O₂ sinh ra từ đâu? &rarr; Sinh ra từ nước H₂O ở pha sáng.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cây C₃, C₄, CAM</strong></td>
+                        <td>• <strong>C₃:</strong> Cây bình thường (lúa, đậu), nắng gắt bị hao 30-50% do hô hấp sáng.<br>
+                        • <strong>C₄:</strong> Cây chịu nóng khỏe (ngô, mía), không có hô hấp sáng, năng suất cao gấp đôi.<br>
+                        • <strong>CAM:</strong> Cây sa mạc (xương rồng, dứa), ban ngày sợ mất nước nên ngậm chặt miệng, ban đêm mới mở miệng lấy CO₂.</td>
+                        <td>Hô hấp sáng chỉ có ở nhóm nào? &rarr; Chỉ có ở thực vật C₃.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rễ ngập úng bị chết</strong></td>
+                        <td>Đất ngập nước làm rễ bị <strong>ngạt thở vì thiếu Oxy</strong> &rarr; rễ lên men sinh ra <strong>rượu cồn (ethanol) làm thối rụng lông hút</strong> &rarr; cây mất khả năng hút nước &rarr; chết khát trên đống nước!</td>
+                        <td>Chất độc làm chết lông hút rễ &rarr; Rượu ethanol do lên men kị khí.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+                    
+        <div class="group-card open" id="card-bai-1" data-lesson="bai-1">
+            <div class="group-header" onclick="toggleCard('card-bai-1')">
+                <div>
+                    <span class="lesson-badge">BÀI 1</span>
+                    <span class="group-title">Trao Đổi Chất Và Chuyển Hóa Năng Lượng Ở Sinh Vật</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 5 - 9</div>
+                </div>
+                <div class="group-arrow">▼</div>
             </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Sinh vật muốn sống thì bắt buộc phải <strong>ăn/uống (lấy chất vào)</strong>, <strong>biến đổi tạo năng lượng để lớn lên và hoạt động</strong>, rồi <strong>thải chất cặn bã ra ngoài</strong>.
+        </div>
 
-            <div id="lessonsContainer">
-
-                <div class="group-card open" id="card-bai-1" data-lesson="bai-1">
-                    <div class="group-header" onclick="toggleCard('card-bai-1')">
-                        <div>
-                            <span class="lesson-badge">BÀI 1</span>
-                            <div class="group-title">Khái Quát Về Trao Đổi Chất Và Chuyển Hóa Năng Lượng Ở Sinh Vật</div>
-                            <div class="group-subtitle">Chương I • Bài 1 (Trang 5 - 9)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
-        <h4>📌 1. Vai Trò Của Trao Đổi Chất Và Chuyển Hóa Năng Lượng:</h4>
+        <h4>📌 1. Vai Trò Của Trao Đổi Chất & Chuyển Hóa Năng Lượng:</h4>
         <div class="note-box">
             <ul>
-                <li>Sinh vật không thể tồn tại và phát triển nếu không thực hiện TĐC & CHNL.</li>
-                <li><strong>Cung cấp nguyên liệu và năng lượng:</strong> Lấy chất từ môi trường để <strong>hình thành tế bào, mô, cơ quan</strong>; cung cấp năng lượng cho <strong>vận động, sinh sản, cảm ứng, sinh trưởng và phát triển</strong>.</li>
-                <li><strong>Đào thải chất thải:</strong> Thải các chất cặn bã, dư thừa, độc hại ra môi trường để tránh <strong>rối loạn hoạt động sống hoặc gây tử vong</strong>.</li>
+                <li><strong>Cung cấp nguyên liệu và năng lượng:</strong> Lấy thức ăn, nước, khoáng từ môi trường để <strong>xây dựng tế bào, mô, cơ quan</strong>; tạo năng lượng cho <strong>vận động, sinh sản, lớn lên</strong>.</li>
+                <li><strong>Đào thải chất bã:</strong> Thải các chất độc hại, cặn bã dư thừa ra ngoài để tránh <strong>ngộ độc, rối loạn hoặc tử vong</strong>.</li>
             </ul>
         </div>
 
-        <h4>🔑 2. Bảy (7) Dấu Hiệu Đặc Trưng (Bắt buộc học thuộc từng từ):</h4>
+        <h4>🔑 2. Bảy (7) Dấu Hiệu Đặc Trưng (Bắt buộc học thuộc để làm bài):</h4>
         <div class="card-grid-2">
             <div class="sub-card">
-                <div class="sub-card-title">1. Tiếp nhận và Vận chuyển chất</div>
-                <p>Thực vật lấy <strong>nước, chất khoáng, CO₂</strong> qua rễ và lá; Động vật lấy <strong>thức ăn, nước, O₂</strong> qua hệ tiêu hóa và hô hấp. Vận chuyển qua <strong>hệ mạch dẫn (thực vật)</strong> hoặc <strong>hệ tuần hoàn (động vật)</strong>.</p>
+                <div class="sub-card-title">1. Tiếp nhận và vận chuyển các chất</div>
+                <p>• Cây lấy <strong>nước, chất khoáng, CO₂</strong> qua rễ và lá.<br>
+                • Động vật lấy <strong>thức ăn, nước, O₂</strong> qua tiêu hóa và hô hấp.<br>
+                • Vận chuyển nhờ <strong>mạch dẫn (thực vật)</strong> hoặc <strong>hệ tuần hoàn (động vật)</strong>.</p>
             </div>
             <div class="sub-card">
-                <div class="sub-card-title">2. Biến đổi chất kèm Chuyển hóa năng lượng</div>
-                <p><strong>Đồng hóa:</strong> Tổng hợp chất hữu cơ phức tạp từ chất đơn giản, <strong>tích lũy hóa năng trong liên kết phân tử</strong>.<br>
-                <strong>Dị hóa:</strong> Phân giải chất hữu cơ phức tạp thành chất đơn giản, <strong>giải phóng năng lượng ATP và tỏa nhiệt</strong>.</p>
+                <div class="sub-card-title">2. Biến đổi chất kèm chuyển hóa năng lượng</div>
+                <p>• <strong>Đồng hóa:</strong> Tổng hợp chất phức tạp từ chất đơn giản, <strong>tích lũy năng lượng</strong> (như ăn vào để lớn).<br>
+                • <strong>Dị hóa:</strong> Phân giải chất phức tạp thành chất đơn giản, <strong>giải phóng năng lượng ATP và tỏa nhiệt</strong> (như đốt năng lượng khi chạy nhảy).</p>
             </div>
             <div class="sub-card">
                 <div class="sub-card-title">3. Thải các chất ra môi trường</div>
-                <p>Cơ thể tống xuất các chất không sử dụng, chất dư thừa (<strong>CO₂, urea, uric acid, mồ hôi, nước tiểu</strong>) ra ngoài để <strong>duy trì cân bằng nội môi</strong>.</p>
+                <p>Cơ thể thải các chất cặn bã dư thừa (<strong>CO₂, mồ hôi, nước tiểu, phân</strong>) ra ngoài để <strong>giữ môi trường bên trong cơ thể luôn ổn định (cân bằng nội môi)</strong>.</p>
             </div>
             <div class="sub-card">
                 <div class="sub-card-title">4. Điều hòa</div>
-                <p>Quá trình TĐC & CHNL luôn được điều chỉnh phù hợp với nhu cầu cơ thể qua <strong>hormone (ở thực vật)</strong> hoặc <strong>hệ thần kinh và hormone (ở động vật)</strong>.</p>
+                <p>Cơ thể tự điều chỉnh các quá trình sống cho phù hợp nhờ <strong>hormone (ở thực vật)</strong> hoặc <strong>hệ thần kinh và hormone (ở động vật)</strong>.</p>
             </div>
+            <div class="sub-card">
+                <div class="sub-card-title">5. Cảm ứng</div>
+                <p>Khả năng nhận biết và phản ứng lại các thay đổi từ môi trường để tồn tại (ví dụ: chạm vào lá cây xấu hổ thì lá cụp lại; trời rét thì nổi da gà).</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">6. Sinh trưởng và phát triển</div>
+                <p>• <strong>Sinh trưởng:</strong> Lớn lên về kích thước và khối lượng.<br>
+                • <strong>Phát triển:</strong> Biến đổi hình thành các bộ phận mới (như cây ra hoa, nảy mầm).</p>
+            </div>
+        </div>
+        <div class="sub-card" style="margin-top:12px;">
+            <div class="sub-card-title">7. Sinh sản</div>
+            <p>Tạo ra thế hệ con cháu mới để <strong>duy trì nòi giống</strong> qua nhiều thế hệ.</p>
         </div>
 
         <h4>⚡ 3. Ba Giai Đoạn Chuyển Hóa Năng Lượng Trong Sinh Giới:</h4>
         <div class="card-grid-3">
             <div class="sub-card">
-                <div class="sub-card-title">① Giai đoạn Tổng hợp</div>
-                <p>Diệp lục cây xanh hấp thụ quang năng mặt trời tổng hợp chất hữu cơ từ CO₂ và H₂O.<br>
-                &rarr; <strong>Quang năng chuyển hóa thành Hóa năng</strong> tích lũy trong phân tử hữu cơ.</p>
+                <div class="sub-card-title">Giai đoạn 1: Tổng hợp</div>
+                <p>Cây xanh hấp thụ <strong>quang năng (ánh sáng mặt trời)</strong> chuyển hóa thành <strong>hóa năng</strong> tích lũy trong các liên kết phân tử của chất hữu cơ.</p>
             </div>
             <div class="sub-card">
-                <div class="sub-card-title">② Giai đoạn Phân giải</div>
-                <p>Hô hấp tế bào bẻ gãy các liên kết hóa học trong phân tử lớn (carbohydrate, lipid, protein).<br>
-                &rarr; <strong>Hóa năng biến đổi thành năng lượng trong ATP và tỏa nhiệt</strong>.</p>
+                <div class="sub-card-title">Giai đoạn 2: Phân giải</div>
+                <p>Hô hấp tế bào phân giải chất hữu cơ, chuyển hóa hóa năng thành <strong>năng lượng tích lũy trong phân tử ATP</strong> và một phần <strong>tỏa nhiệt</strong>.</p>
             </div>
             <div class="sub-card">
-                <div class="sub-card-title">③ Giai đoạn Huy động năng lượng</div>
-                <p>Phân tử <strong>ATP bị phá vỡ liên kết phosphate</strong> để cung cấp năng lượng cho: <strong>tổng hợp chất mới, co cơ vận động, vận chuyển chủ động qua màng</strong>.</p>
+                <div class="sub-card-title">Giai đoạn 3: Huy động</div>
+                <p>Các liên kết phosphate trong <strong>ATP bị phá vỡ</strong> để cung cấp năng lượng trực tiếp cho các hoạt động sống (co cơ, vận chuyển chất...).</p>
             </div>
         </div>
 
-        <h4>🌾 4. Phân Biệt 4 Phương Thức TĐC & CHNL (Bẫy trắc nghiệm):</h4>
-        <div class="table-responsive"><div class="scroll-hint">👉 Vuốt sang ngang để đọc hết bảng</div><table class="data-table">
-            <thead>
-                <tr>
-                    <th>Phương thức</th>
-                    <th>Nguồn Carbon</th>
-                    <th>Nguồn Năng lượng</th>
-                    <th>Sinh vật đại diện</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Quang tự dưỡng</strong></td>
-                    <td><strong>CO₂ (chất vô cơ)</strong></td>
-                    <td><strong>Ánh sáng mặt trời</strong></td>
-                    <td><strong>Thực vật, tảo lục, vi khuẩn lam</strong>, vi khuẩn lưu huỳnh màu tía/lục.</td>
-                </tr>
-                <tr>
-                    <td><strong>Hóa tự dưỡng</strong></td>
-                    <td><strong>CO₂ (chất vô cơ)</strong></td>
-                    <td><strong>Oxy hóa chất vô cơ (NH₄⁺, NO₂⁻, H₂S, Fe²⁺)</strong></td>
-                    <td><strong>Vi khuẩn nitrat hóa</strong>, vi khuẩn oxy hóa lưu huỳnh/sắt.</td>
-                </tr>
-                <tr>
-                    <td><strong>Quang dị dưỡng</strong></td>
-                    <td><strong>Chất hữu cơ</strong></td>
-                    <td><strong>Ánh sáng mặt trời</strong></td>
-                    <td><strong>Vi khuẩn không lưu huỳnh màu lục/tía</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Hóa dị dưỡng</strong></td>
-                    <td><strong>Chất hữu cơ</strong></td>
-                    <td><strong>Oxy hóa chất hữu cơ (thức ăn)</strong></td>
-                    <td><strong>Động vật, nấm, người, đa số vi khuẩn</strong>.</td>
-                </tr>
-            </tbody>
-        </table></div>
-
-        <h4>⭐ 5. Mối Quan Hệ Giữa Tế Bào - Cơ Thể & Vai Trò Sinh Vật Tự Dưỡng:</h4>
-        <div class="highlight-card">
-            <ul>
-                <li><strong>Quan hệ Tế bào - Cơ thể:</strong> Cơ thể thu nhận và vận chuyển chất cung cấp cho tế bào chuyển hóa; tế bào giải phóng ATP nuôi dưỡng toàn bộ hoạt động sống của cơ thể.</li>
-                <li><strong>Vai trò sinh vật tự dưỡng:</strong> Đóng vai trò là <strong>sinh vật sản xuất</strong> nuôi sống toàn bộ sinh vật dị dưỡng trên Trái Đất; cung cấp <strong>dưỡng khí O₂</strong> cho hô hấp; hấp thụ khổng lồ <strong>khí CO₂</strong> giúp giảm hiệu ứng nhà kính.</li>
-            </ul>
+        <h4>🌾 4. Bốn Phương Thức Trao Đổi Chất & Chuyển Hóa Năng Lượng:</h4>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Phương thức</th>
+                        <th>Nguồn năng lượng</th>
+                        <th>Nguồn Carbon</th>
+                        <th>Ví dụ đại diện</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Quang tự dưỡng</strong></td>
+                        <td>Ánh sáng mặt trời</td>
+                        <td>CO₂ (chất vô cơ)</td>
+                        <td><strong>Thực vật, tảo, vi khuẩn lam</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hóa tự dưỡng</strong></td>
+                        <td>Phản ứng hóa học vô cơ</td>
+                        <td>CO₂ (chất vô cơ)</td>
+                        <td>Vi khuẩn oxi hóa sắt, vi khuẩn nitrat hóa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quang dị dưỡng</strong></td>
+                        <td>Ánh sáng mặt trời</td>
+                        <td>Chất hữu cơ</td>
+                        <td>Vi khuẩn không chứa lưu huỳnh màu lục/tía</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hóa dị dưỡng</strong></td>
+                        <td>Chất hữu cơ</td>
+                        <td>Chất hữu cơ</td>
+                        <td><strong>Động vật, nấm, người, đa số vi khuẩn</strong></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <p style="margin-top:8px; font-size:13.5px; color:var(--text-secondary);">🌟 <strong>Vai trò của sinh vật tự dưỡng:</strong> Đóng vai trò là sinh vật sản xuất, cung cấp thức ăn, năng lượng và dưỡng khí O₂ nuôi sống toàn bộ sinh vật dị dưỡng trên Trái Đất.</p>
         
-                    </div>
+            </div>
+        </div>
+    
+        <div class="group-card open" id="card-bai-2" data-lesson="bai-2">
+            <div class="group-header" onclick="toggleCard('card-bai-2')">
+                <div>
+                    <span class="lesson-badge">BÀI 2</span>
+                    <span class="group-title">Trao Đổi Nước Và Khoáng Ở Thực Vật</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 10 - 15</div>
                 </div>
-        
-                <div class="group-card open" id="card-bai-2" data-lesson="bai-2">
-                    <div class="group-header" onclick="toggleCard('card-bai-2')">
-                        <div>
-                            <span class="lesson-badge">BÀI 2</span>
-                            <div class="group-title">Trao Đổi Nước Và Khoáng Ở Thực Vật</div>
-                            <div class="group-subtitle">Chương I • Bài 2 (Trang 10 - 15)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
-        <h4>📌 1. Vai Trò Của Nước & 17 Nguyên Tố Khoáng Thiết Yếu:</h4>
+                <div class="group-arrow">▼</div>
+            </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Rễ cây hút <strong>nước (theo kiểu thẩm thấu)</strong> và hút <strong>khoáng (chủ động hoặc thụ động)</strong>. Nước đi vào ruột rễ theo 2 đường nhưng đều bị <strong>đai Caspary chặn lại</strong> để lọc sạch trước khi vào <strong>mạch gỗ</strong> bơm lên lá.
+        </div>
+
+        <h4>📌 1. Vai Trò Của Nước & Khoáng:</h4>
         <div class="note-box">
             <ul>
-                <li><strong>4 vai trò của nước:</strong> Chiếm <strong>70 - 90% khối lượng tươi</strong> (nâng đỡ mô non qua sức trương); là <strong>dung môi hòa tan</strong>; là <strong>môi trường và chất tham gia phản ứng sinh hóa</strong>; tham gia <strong>điều hòa thân nhiệt</strong> qua thoát hơi nước.</li>
-                <li><strong>17 nguyên tố khoáng thiết yếu:</strong> Là những nguyên tố mà thiếu chúng cây <strong>không thể hoàn thành chu kì sống</strong>, không thay thế được và trực tiếp tham gia chuyển hóa.
-                    <ul>
-                        <li><strong>Đa lượng (C, H, O, N, P, K, Ca, Mg, S):</strong> Cấu trúc đại phân tử hữu cơ và điều hòa thẩm thấu.</li>
-                        <li><strong>Vi lượng (Fe, Mn, B, Cl, Zn, Cu, Mo, Ni):</strong> Cấu tạo coenzyme và hoạt hóa enzyme.</li>
-                    </ul>
+                <li><strong>Nước chiếm 70 - 90% khối lượng tươi:</strong> Giúp cây cứng cáp đứng thẳng (nhờ sức trương nước); là dung môi hòa tan; là môi trường cho phản ứng sinh hóa; thoát hơi nước giúp làm mát lá.</li>
+                <li><strong>17 nguyên tố khoáng thiết yếu:</strong> Thiếu chúng cây không thể sống và phát triển bình thường:
+                    <br>• <strong>Đa lượng (cần nhiều):</strong> C, H, O, N, P, K, Ca, Mg, S.
+                    <br>• <strong>Vi lượng (cần lượng rất ít):</strong> Fe, Mn, Zn, Cu, Mo, B, Cl, Ni.
                 </li>
             </ul>
         </div>
 
-        <h4>🔑 2. Cơ Chế Hấp Thụ Nước & Khoáng Ở Tế Bào Lông Hút Của Rễ:</h4>
+        <h4>🌱 2. Quá Trình Hút Nước Và Khoáng Ở Tế Bào Lông Hút Của Rễ:</h4>
         <div class="card-grid-2">
             <div class="sub-card">
-                <div class="sub-card-title">Hấp thụ Nước (Thẩm thấu thụ động 100%)</div>
-                <p>Nước đi từ nơi có <strong>thế nước cao (đất nhược trương)</strong> vào nơi có <strong>thế nước thấp (dịch bào lông hút ưu trương)</strong>, <strong>không tốn ATP</strong>.<br>
-                <em>Dịch lông hút luôn ưu trương nhờ:</em> Thoát hơi nước ở lá kéo nước lên; và rễ tích lũy chất tan từ chuyển hóa.</p>
+                <div class="sub-card-title">Hút Nước (Cơ chế thẩm thấu)</div>
+                <p>Nước tự động di chuyển từ đất (nơi dung dịch <strong>loãng hơn / thế nước cao</strong>) vào trong tế bào lông hút (nơi dịch bào <strong>đặc hơn / chứa nhiều chất tan / thế nước thấp</strong>).</p>
             </div>
             <div class="sub-card">
-                <div class="sub-card-title">Hấp thụ Khoáng (2 Cơ chế)</div>
-                <p><strong>Thụ động:</strong> Khoáng khuếch tán từ đất nồng độ cao vào rễ nồng độ thấp (<strong>xuôi chiều gradient</strong>), không tốn ATP.<br>
-                <strong>Chủ động (Đa số):</strong> Khoáng vận chuyển <strong>ngược chiều gradient nồng độ</strong> (từ đất thấp vào rễ cao), <strong>bắt buộc tiêu tốn ATP</strong> và cần <strong>bơm ion/protein mang</strong>.</p>
+                <div class="sub-card-title">Hút Khoáng (Thụ động & Chủ động)</div>
+                <p>• <strong>Thụ động:</strong> Ion khoáng đi từ đất (nơi nồng độ cao) vào rễ (nơi nồng độ thấp), <strong>không tốn năng lượng ATP</strong>.<br>
+                • <strong>Chủ động:</strong> Ion khoáng đi từ đất (nơi nồng độ thấp) vào rễ (nơi nồng độ cao), <strong>ngược chiều nồng độ nên bắt buộc tiêu tốn năng lượng ATP</strong>.</p>
             </div>
         </div>
 
-        <h4>🔑 3. Hai Con Đường Vận Chuyển Từ Lông Hút Vào Mạch Gỗ & ĐAI CASPARY:</h4>
-        <div class="highlight-card">
-            <ul>
-                <li><strong>Con đường gian bào (Apoplast):</strong> Nước và khoáng đi men theo <strong>thành tế bào và khoảng trống gian bào</strong>. Đặc điểm: <strong>Vận tốc nhanh, lực cản thấp, không có tính chọn lọc</strong>.</li>
-                <li><strong>Con đường tế bào chất (Symplast):</strong> Nước và khoáng đi <strong>xuyên qua màng sinh chất vào tế bào chất</strong>, qua <strong>cầu sinh chất</strong>. Đặc điểm: <strong>Vận tốc chậm nhưng có tính chọn lọc cao</strong>.</li>
-                <li>⚠️ <strong>VAI TRÒ ĐAI CASPARY (Trọng tâm thi):</strong> Tại lớp nội bì, thành tế bào có <strong>Đai Caspary tẩm suberin không thấm nước</strong>. Do đó, dòng nước và khoáng đi theo con đường gian bào <strong>bị chặn lại hoàn toàn</strong>, buộc phải <strong>chuyển hướng xuyên qua màng sinh chất vào tế bào chất</strong> của tế bào nội bì để <strong>kiểm soát và chọn lọc chất</strong> trước khi vào mạch gỗ.</li>
-            </ul>
+        <h4>🚪 3. Hai Con Đường Vận Chuyển Nước & Khoáng Vào Mạch Gỗ (Cực Kỳ Trọng Tâm):</h4>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Đặc điểm</th>
+                        <th style="width: 37%;">Con đường gian bào</th>
+                        <th style="width: 38%;">Con đường tế bào chất</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Đường đi</strong></td>
+                        <td>Đi len lỏi qua <strong>khoảng không gian giữa các tế bào</strong> và vách tế bào.</td>
+                        <td>Đi <strong>xuyên qua màng sinh chất</strong> vào bên trong ruột tế bào rồi truyền qua các cầu sinh chất.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tốc độ</strong></td>
+                        <td><strong>Nhanh</strong>, lượng nước đi nhiều do ít bị lực cản.</td>
+                        <td><strong>Chậm hơn</strong> do phải đi xuyên qua màng và dịch tế bào chất.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kiểm soát & Đai Caspary</strong></td>
+                        <td>Không được kiểm soát cho đến khi gặp <strong>ĐAI CASPARY ở nội bì</strong> (chống thấm nước). Đai Caspary chặn lại, <strong>bắt buộc nước phải chuyển hướng đi xuyên qua màng sinh chất của tế bào nội bì</strong>.</td>
+                        <td>Được màng sinh chất <strong>chọn lọc và kiểm soát chặt chẽ ngay từ đầu</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="easy-explain" style="margin-top:10px;">
+            🛡️ <strong>Vì sao qua nội bì nước không thể đi theo gian bào mà phải qua màng sinh chất?</strong><br>
+            Vì các tế bào nội bì có vòng <strong>đai Caspary</strong> chống thấm nước bao quanh. Đai Caspary chặn con đường gian bào lại, ép dòng nước và khoáng phải <strong>đi qua màng sinh chất để tế bào nội bì kiểm soát, chọn lọc chất cần thiết và ngăn chặn chất độc hại</strong> lọt vào mạch gỗ của cây.
         </div>
 
-        <h4>🌾 4. So Sánh Dòng Mạch Gỗ (Xylem) vs Dòng Mạch Rây (Phloem):</h4>
-        <div class="table-responsive"><div class="scroll-hint">👉 Vuốt sang ngang để đọc hết bảng</div><table class="data-table">
-            <thead>
-                <tr>
-                    <th>Tiêu chí</th>
-                    <th>Dòng Mạch Gỗ (Xylem)</th>
-                    <th>Dòng Mạch Rây (Phloem)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Cấu tạo tế bào</strong></td>
-                    <td><strong>Tế bào chết</strong> (quản bào và mạch ống) hóa gỗ dày cứng, mất hết nhân và bào quan.</td>
-                    <td><strong>Tế bào sống</strong> (ống rây nối nhau qua bản rây và tế bào kèm).</td>
-                </tr>
-                <tr>
-                    <td><strong>Thành phần dịch</strong></td>
-                    <td><strong>Nước, ion khoáng</strong> và một ít hormone cytokinine, amino acid từ rễ.</td>
-                    <td>Chất hữu cơ do lá quang hợp tổng hợp (chủ yếu là <strong>Sucrose chiếm 95%</strong>), hormone, K⁺.</td>
-                </tr>
-                <tr>
-                    <td><strong>Chiều vận chuyển</strong></td>
-                    <td><strong>Dòng đi lên (1 chiều):</strong> Từ <strong>Rễ &rarr; Thân &rarr; Lá</strong>.</td>
-                    <td><strong>Hai chiều:</strong> Từ <strong>Cơ quan nguồn (lá) &rarr; Cơ quan chứa (rễ, củ, quả, hạt)</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Động lực chính</strong></td>
-                    <td>Phối hợp 3 lực, trong đó <strong>thoát hơi nước ở lá là lực hút chính quan trọng nhất</strong>.</td>
-                    <td>Chênh lệch <strong>áp suất thẩm thấu</strong> giữa cơ quan nguồn (cao) và cơ quan chứa (thấp).</td>
-                </tr>
-            </tbody>
-        </table></div>
-
-        <h4>💧 5. Thoát Hơi Nước & Cơ Chế Đóng Mở Khí Khổng:</h4>
-        <div class="note-box">
-            <p>Thoát hơi nước qua khí khổng chiếm <strong>90 - 98%</strong> lượng nước thoát ra từ lá. Khí khổng gồm 2 tế bào hình hạt đậu:</p>
-            <p style="text-align:center; font-size:1.05rem; color:#10b981;"><strong>MÉP VÁCH TRONG RẤT DÀY — MÉP VÁCH NGOÀI RẤT MỎNG VÀ ĐÀN HỒI</strong></p>
-            <ul>
-                <li><strong>Khi no nước (được chiếu sáng, quang hợp tạo đường, hút K⁺ vào):</strong> Tế bào hạt đậu hút nước trương lên &rarr; <strong>vách mỏng ngoài dãn dài uốn cong ra ngoài</strong> kéo vách trong cong theo &rarr; <strong>KHÍ KHỔNG MỞ RA</strong> &rarr; tăng thoát hơi nước.</li>
-                <li><strong>Khi mất nước (hạn hán, ban đêm, hormone ABA tăng cao):</strong> Bơm ion K⁺ thoát ra &rarr; tế bào hạt đậu mất nước xẹp xuống &rarr; <strong>vách dày duỗi thẳng trở lại</strong> &rarr; <strong>KHÍ KHỔNG ĐÓNG LẠI</strong> (không bao giờ đóng kín hoàn toàn).</li>
-            </ul>
+        <h4>🚚 4. Dòng Mạch Gỗ vs Dòng Mạch Rây Trong Thân Cây:</h4>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">Dòng Mạch Gỗ (Đi lên 1 chiều)</div>
+                <p>• <strong>Cấu tạo:</strong> Là các <strong>tế bào chết</strong> đã hóa gỗ (quản bào và mạch ống) tạo thành các ống rỗng dài thông suốt.<br>
+                • <strong>Chất vận chuyển:</strong> Chủ yếu là <strong>nước và các ion khoáng</strong> từ rễ lên lá.<br>
+                • <strong>3 động lực:</strong> (1) <strong>Lực hút do thoát hơi nước ở lá</strong> (động lực chính và mạnh nhất); (2) <strong>Lực đẩy của rễ (áp suất rễ)</strong>; (3) <strong>Lực liên kết</strong> giữa các phân tử nước với nhau và với thành mạch gỗ.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">Dòng Mạch Rây (Đi từ nguồn đến nơi chứa)</div>
+                <p>• <strong>Cấu tạo:</strong> Là các <strong>tế bào sống</strong> (ống rây và tế bào kèm).<br>
+                • <strong>Chất vận chuyển:</strong> Chủ yếu là <strong>đường saccarozơ, axit amin</strong> và các chất hữu cơ tổng hợp từ lá.<br>
+                • <strong>Động lực:</strong> Do <strong>chênh lệch áp suất thẩm thấu</strong> giữa cơ quan nguồn (nơi tạo đường như lá) và cơ quan chứa (nơi tiêu thụ như rễ, củ, quả).</p>
+            </div>
         </div>
-        
-                    </div>
-                </div>
-        
-                <div class="group-card open" id="card-bai-3" data-lesson="bai-3">
-                    <div class="group-header" onclick="toggleCard('card-bai-3')">
-                        <div>
-                            <span class="lesson-badge">BÀI 3</span>
-                            <div class="group-title">Nhân Tố Ảnh Hưởng Đến Trao Đổi Nước, Khoáng & Dinh Dưỡng Nitơ</div>
-                            <div class="group-subtitle">Chương I • Bài 3 (Trang 16 - 22)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
-        <h4>📌 1. Các Nhân Tố Môi Trường Ảnh Hưởng Đến Trao Đổi Nước & Khoáng:</h4>
-        <ul>
-            <li><strong>Ánh sáng:</strong> Kích thích khí khổng mở rộng làm tăng thoát hơi nước, tạo động lực hút kéo nước và khoáng đi lên.</li>
-            <li><strong>Nhiệt độ:</strong> Trong giới hạn sinh thái, nhiệt độ tăng làm tăng tốc độ hấp thụ; nhiệt độ quá thấp làm giảm hô hấp rễ khiến rễ hút khoáng kém.</li>
-            <li><strong>Độ ẩm đất & không khí:</strong> Độ ẩm đất thuận lợi giúp rễ dễ hút nước; độ ẩm không khí thấp làm tăng thoát hơi nước.</li>
-            <li><strong>Độ pH đất:</strong> Ảnh hưởng đến độ hòa tan của ion khoáng (pH đất tối ưu cho đa số cây trồng từ <strong>6.0 - 6.5</strong>).</li>
-        </ul>
 
-        <h4>🔑 2. Vai Trò Của Nitrogen & Các Quá Trình Biến Đổi Trong Cây:</h4>
+        <h4>🍃 5. Thoát Hơi Nước & Cơ Chế Đóng Mở Khí Khổng:</h4>
         <div class="note-box">
             <ul>
-                <li><strong>Vai trò:</strong> Cấu tạo <strong>protein, nucleic acid (DNA, RNA), diệp lục, ATP, enzyme, hormone</strong>.</li>
-                <li><strong>Dạng cây hấp thụ:</strong> Chỉ hấp thụ được 2 dạng ion vô cơ: <strong>Nitrate (NO₃⁻)</strong> và <strong>Ammonium (NH₄⁺)</strong>. <em>Không hấp thụ trực tiếp N₂ khí quyển</em>.</li>
-                <li><strong>Quá trình Khử Nitrate (NO₃⁻ &rarr; NH₄⁺):</strong>
-                    <div class="formula-box"><strong>NO₃⁻ (Nitrate) &rarr; NO₂⁻ (Nitrite) &rarr; NH₄⁺ (Ammonium)</strong></div>
-                    Xúc tác bởi enzyme <em>Nitrate reductase</em> và <em>Nitrite reductase</em>, cần chất khử <strong>NADH/NADPH</strong> và vi lượng <strong>Mo, Fe</strong>.
+                <li><strong>Vai trò của thoát hơi nước:</strong> Tạo lực hút chính kéo nước và khoáng từ rễ lên ngọn; làm mát lá cây vào những ngày nắng gắt; giúp khí khổng mở để CO₂ khuếch tán vào lá cho quang hợp.</li>
+                <li><strong>Thoát hơi nước qua 2 con đường:</strong>
+                    <br>• Qua <strong>khí khổng</strong>: Chiếm phần lớn lượng nước thoát ra, <strong>điều chỉnh được</strong> bằng sự đóng mở khí khổng.
+                    <br>• Qua <strong>lớp cutin</strong> trên bề mặt lá: Lượng nước thoát ra ít, không điều chỉnh được.
                 </li>
-                <li><strong>Quá trình Đồng hóa Ammonium (NH₄⁺):</strong> Để <strong>giải độc NH₄⁺ dư thừa</strong> và tích trữ đạm:
-                    <ul>
-                        <li><em>Amin hóa trực tiếp:</em> Acid keto + NH₄⁺ &rarr; Amino acid.</li>
-                        <li><em>Chuyển vị amin:</em> Trao đổi nhóm amin tạo amino acid mới.</li>
-                        <li><em>Hình thành Amide (Quan trọng nhất):</em> Amino acid đicarboxylic + NH₄⁺ &rarr; <strong>Amide (Glutamine, Asparagine)</strong>.</li>
-                    </ul>
+                <li><strong>Cơ chế đóng mở khí khổng (Rất hay hỏi thi):</strong>
+                    <br>Mỗi khí khổng do 2 tế bào hình hạt đậu ghép lại, có đặc điểm: <strong>vách trong dày, vách ngoài mỏng</strong>.
+                    <br>• <strong>Khi no nước:</strong> Vách ngoài mỏng phồng căng cong vòng ra ngoài, <strong>kéo vách trong dày cong theo $ightarrow$ Khí khổng mở ra</strong>.
+                    <br>• <strong>Khi mất nước:</strong> Vách ngoài hết căng, hai vách duỗi thẳng lại $ightarrow$ <strong>Khí khổng khép/đóng lại</strong>.
                 </li>
             </ul>
         </div>
+        
+            </div>
+        </div>
+    
+        <div class="group-card open" id="card-bai-3" data-lesson="bai-3">
+            <div class="group-header" onclick="toggleCard('card-bai-3')">
+                <div>
+                    <span class="lesson-badge">BÀI 3</span>
+                    <span class="group-title">Nhân Tố Ảnh Hưởng Đến Trao Đổi Nước, Khoáng & Dinh Dưỡng Nitơ</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 16 - 22</div>
+                </div>
+                <div class="group-arrow">▼</div>
+            </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Ánh sáng, nhiệt độ, độ ẩm đất quyết định cây hút nước tốt hay không. Trong các loại khoáng thì <strong>Nitơ (đạm) là quan trọng nhất</strong>. Cây chỉ ăn được nitơ dạng <strong>NH₄⁺</strong> và <strong>NO₃⁻</strong>.
+        </div>
 
-        <h4>🌾 3. Bảng Nhận Diện Cây Thiếu Khoáng (Mẹo nhớ vị trí lá):</h4>
-        <div class="table-responsive"><div class="scroll-hint">👉 Vuốt sang ngang để đọc hết bảng</div><table class="data-table">
-            <thead>
-                <tr>
-                    <th>Nguyên tố</th>
-                    <th>Triệu chứng lâm sàng ở cây</th>
-                    <th>Vị trí lá biểu hiện trước</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Nitơ (N)</strong></td>
-                    <td>Cây còi cọc, sinh trưởng chậm, <strong>toàn bộ lá chuyển màu vàng nhạt hoặc úa vàng</strong>.</td>
-                    <td><strong>LÁ GIÀ trước</strong> (ion di động).</td>
-                </tr>
-                <tr>
-                    <td><strong>Phosphorus (P)</strong></td>
-                    <td>Lá màu <strong>xanh đậm sẫm, mép và gân chuyển sang màu đỏ tía/tím</strong>; rễ còi cọc.</td>
-                    <td><strong>LÁ GIÀ trước</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Potassium (K)</strong></td>
-                    <td><strong>Mép lá và chóp lá bị vàng cháy xém mép</strong>; thân mềm yếu dễ bị đổ ngã.</td>
-                    <td><strong>LÁ GIÀ trước</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Magnesium (Mg)</strong></td>
-                    <td>Phiến lá chuyển màu vàng nhưng <strong>gân lá vẫn giữ màu xanh đậm (vàng liên gân)</strong>.</td>
-                    <td><strong>LÁ GIÀ trước</strong> (nhân diệp lục).</td>
-                </tr>
-                <tr>
-                    <td><strong>Iron (Fe)</strong></td>
-                    <td>Phiến lá chuyển <strong>màu vàng trắng bệch, chỉ còn gân lá màu xanh nhạt</strong>.</td>
-                    <td><strong>LÁ NON trước</strong> (ion bất động).</td>
-                </tr>
-                <tr>
-                    <td><strong>Calcium (Ca)</strong></td>
-                    <td><strong>Chồi đỉnh bị thối đen chết hoại</strong>; mép lá non bị biến dạng quăn queo; rễ thối chóp.</td>
-                    <td><strong>LÁ NON & CHỒI ĐỈNH trước</strong> (ion bất động).</td>
-                </tr>
-            </tbody>
-        </table></div>
+        <h4>📌 1. Các Nhân Tố Môi Trường Ảnh Hưởng Đến Hút Nước & Khoáng:</h4>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">Ánh sáng & Nhiệt độ</div>
+                <p>• <strong>Ánh sáng:</strong> Kích thích khí khổng mở ra $ightarrow$ tăng thoát hơi nước $ightarrow$ tăng lực hút nước và khoáng đi lên.<br>
+                • <strong>Nhiệt độ:</strong> Nhiệt độ ấm vừa phải giúp rễ hút khoáng tốt; lạnh quá hoặc nóng quá làm rễ bị tê liệt, giảm hô hấp rễ khiến cây hút kém.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">Độ ẩm đất & Độ thoáng khí</div>
+                <p>• <strong>Độ ẩm đất:</strong> Đất đủ ẩm rễ mới hút được nước; đất khô hạn rễ bị teo héo; đất ngập úng làm rễ ngạt thở.<br>
+                • <strong>Độ thoáng khí:</strong> Đất thoáng có đủ khí Oxy cho rễ hô hấp tạo năng lượng hút khoáng chủ động.</p>
+            </div>
+        </div>
 
-        <h4>⭐ 4. Cân Bằng Nước & Phản Ứng Chống Chịu Bất Lợi:</h4>
-        <div class="highlight-card">
+        <h4>🌿 2. Dinh Dưỡng Nitơ Ở Thực Vật (Nguyên Tố Cốt Lõi):</h4>
+        <div class="note-box">
             <ul>
-                <li><strong>Cân bằng nước:</strong> Lượng nước hút vào (A) so với thoát ra (B). Khi <strong>A &lt; B</strong>, cây bị mất cân bằng nước dẫn đến <strong>héo rũ</strong>; vượt quá <strong>ngưỡng héo vĩnh viễn</strong> cây sẽ chết.</li>
-                <li><strong>Thực vật chịu hạn:</strong> Giảm diện tích lá, tầng cutin dày, khí khổng chìm sâu hoặc đóng ban ngày; rễ ăn sâu lan rộng; tích lũy proline, đường giữ nước.</li>
-                <li><strong>Thực vật chịu ngập úng:</strong> Phát triển hệ thống <strong>mô khí (khoang xốp chứa khí)</strong> trong thân rễ dẫn oxy từ lá xuống rễ; phát triển <strong>rễ hô hấp</strong> nhô lên mặt bùn (cây đước, vẹt).</li>
+                <li><strong>Vai trò của Nitơ:</strong>
+                    <br>• <strong>Cấu trúc:</strong> Cấu tạo nên phân tử <strong>protein, axit nucleic (ADN, ARN), diệp lục, ATP</strong>.
+                    <br>• <strong>Điều tiết:</strong> Tham gia cấu tạo các enzyme và hormone điều hòa quá trình trao đổi chất.
+                    <br>$ightarrow$ <strong>Biểu hiện khi thiếu Nitơ:</strong> Cây sinh trưởng còi cọc, cành lá phát triển kém, <strong>lá có màu vàng nhạt bắt đầu từ các lá già phía dưới gốc trước</strong>.
+                </li>
+                <li><strong>Dạng Nitơ cây hấp thụ:</strong> Cây <strong>không thể</strong> hấp thụ trực tiếp khí nitơ tự do (N₂) trong không khí, mà chỉ hấp thụ được 2 dạng ion khoáng trong đất là:
+                    <br>• Dạng ion amôn: <strong>NH₄⁺</strong> (ammonium).
+                    <br>• Dạng ion nitrat: <strong>NO₃⁻</strong> (nitrate).
+                </li>
+            </ul>
+        </div>
+
+        <h4>🔄 3. Hai Quá Trình Biến Đổi Nitơ Trong Cây:</h4>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">1. Quá trình khử Nitrate (NO₃⁻ &rarr; NH₄⁺)</div>
+                <p>Trong cây, nitơ cần ở dạng khử NH₄⁺ để tạo axit amin. Vì vậy ion NO₃⁻ sau khi hút vào cây phải trải qua quá trình khử thành NH₄⁺:<br>
+                <strong style="color:var(--accent);">NO₃⁻ (nitrate) &rarr; NO₂⁻ (nitrite) &rarr; NH₄⁺ (ammonium)</strong></p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">2. Đồng hóa Ammonium & Hình thành Amide</div>
+                <p>• Ion NH₄⁺ được gắn vào các hợp chất hữu cơ để tạo thành các <strong>axit amin</strong>.<br>
+                • Nếu lượng NH₄⁺ tích tụ quá nhiều trong cây sẽ gây ngộ độc. Cây sẽ đem gắn NH₄⁺ vào axit amin để tạo thành <strong>AMIDE</strong>.<br>
+                $ightarrow$ <strong>Ý nghĩa của hình thành amide:</strong> Vừa giúp <strong>giải độc cho cây khi thừa NH₄⁺</strong>, vừa là <strong>nguồn dự trữ nitơ</strong> cho cây khi cần dùng.</p>
+            </div>
+        </div>
+
+        <h4>💧 4. Cân Bằng Nước & Bón Phân Hợp Lý:</h4>
+        <div class="note-box">
+            <ul>
+                <li><strong>Cân bằng nước:</strong> Là sự tương quan giữa lượng nước rễ hút vào và lượng nước lá thoát ra.
+                    <br>• Hút vào &ge; Thoát ra: Cây đủ nước, tươi tốt.
+                    <br>• Hút vào &lt; Thoát ra: Cây bị mất cân bằng nước, lá bị héo úa.
+                </li>
+                <li><strong>Bón phân hợp lý theo nguyên tắc 4 đúng:</strong> Đúng loại, đúng liều lượng, đúng thời điểm, đúng phương pháp. Bón quá nhiều phân sẽ làm tăng nồng độ chất tan trong đất khiến rễ không hút được nước (cháy lá, héo rễ), gây lãng phí và ô nhiễm môi trường.</li>
             </ul>
         </div>
         
-                    </div>
+            </div>
+        </div>
+    
+        <div class="group-card open" id="card-bai-4" data-lesson="bai-4">
+            <div class="group-header" onclick="toggleCard('card-bai-4')">
+                <div>
+                    <span class="lesson-badge">BÀI 4</span>
+                    <span class="group-title">Quang Hợp Ở Thực Vật</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 23 - 29</div>
                 </div>
-        
-                <div class="group-card open" id="card-bai-4" data-lesson="bai-4">
-                    <div class="group-header" onclick="toggleCard('card-bai-4')">
-                        <div>
-                            <span class="lesson-badge">BÀI 4</span>
-                            <div class="group-title">Quang Hợp Ở Thực Vật</div>
-                            <div class="group-subtitle">Chương I • Bài 4 (Trang 23 - 29)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
-        <h4>📌 1. Khái Niệm, Phương Trình & Hệ Sắc Tố Quang Hợp:</h4>
+                <div class="group-arrow">▼</div>
+            </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Cây dùng <strong>nước + CO₂ + ánh sáng</strong> để tạo ra <strong>đường glucose và khí Oxy</strong>. Pha sáng diễn ra ở màng thylakoid (chẻ nước tạo O₂ và sạc pin ATP/NADPH). Pha tối diễn ra ở chất nền stroma (nấu CO₂ thành đường).
+        </div>
+
+        <h4>📌 1. Khái Niệm, Phương Trình & Hệ Sắc Tố:</h4>
         <div class="highlight-card">
-            <p><strong>Quang hợp</strong> là quá trình lục lạp hấp thu năng lượng ánh sáng mặt trời để chuyển hóa <strong>CO₂ và H₂O</strong> thành <strong>hợp chất hữu cơ (C₆H₁₂O₆)</strong> và giải phóng <strong>khí Oxy (O₂)</strong>.</p>
+            <p><strong>Quang hợp</strong> là quá trình lục lạp hấp thu năng lượng ánh sáng mặt trời để tổng hợp chất hữu cơ (glucose) từ <strong>CO₂ và H₂O</strong>, đồng thời giải phóng <strong>khí Oxy (O₂)</strong>.</p>
             <div class="formula-box"><strong>6 CO₂ + 12 H₂O &rarr; [Ánh sáng, Diệp lục] &rarr; C₆H₁₂O₆ + 6 O₂&uarr; + 6 H₂O</strong></div>
         </div>
 
-        <div class="card-grid-2">
+        <div class="card-grid-2" style="margin-top:12px;">
             <div class="sub-card">
-                <div class="sub-card-title">Nhóm Diệp lục (Chlorophyll)</div>
-                <p><strong>Diệp lục a trung tâm (P680, P700):</strong> Trực tiếp biến đổi quang năng thành hóa năng trong ATP và NADPH.<br>
-                <strong>Diệp lục b:</strong> Hấp thụ và truyền năng lượng cho diệp lục a.<br>
-                <strong>Quang phổ:</strong> Hấp thụ mạnh nhất ở dải <strong>Xanh tím (430 - 450 nm)</strong> và <strong>Đỏ (640 - 660 nm)</strong>. Phản xạ ánh sáng xanh lục &rarr; lá có màu xanh lục.</p>
+                <div class="sub-card-title">Nhóm Diệp Lục (Chlorophyll)</div>
+                <p>Gồm <strong>diệp lục a</strong> và <strong>diệp lục b</strong>, tạo nên màu xanh của lá.<br>
+                • <strong>Diệp lục a ở trung tâm phản ứng quang hóa</strong> là chất trực tiếp chuyển hóa năng lượng ánh sáng thành năng lượng trong ATP và NADPH.</p>
             </div>
             <div class="sub-card">
-                <div class="sub-card-title">Nhóm Carotenoid (Carotene & Xanthophyll)</div>
-                <p>Hấp thụ ánh sáng xanh tím truyền cho diệp lục; đồng thời có vai trò <strong>bảo vệ diệp lục không bị quang phân hủy</strong> khi cường độ ánh sáng quá mạnh.<br>
-                <strong>Sơ đồ truyền năng lượng:</strong><br>
-                <strong>Carotenoid &rarr; Diệp lục b &rarr; Diệp lục a &rarr; Diệp lục a trung tâm (P680, P700)</strong></p>
+                <div class="sub-card-title">Nhóm Carotenoid (Sắc tố vàng cam)</div>
+                <p>Gồm <strong>carotene</strong> và <strong>xanthophyll</strong>, tạo màu vàng, cam, đỏ của củ quả.<br>
+                • Có vai trò <strong>hấp thụ và truyền năng lượng ánh sáng cho diệp lục a</strong>, đồng thời bảo vệ diệp lục không bị cháy quang hóa khi nắng gắt.</p>
+            </div>
+        </div>
+        <p style="margin-top:8px; font-size:13.5px; color:var(--text-secondary);">➡️ <strong>Sơ đồ truyền năng lượng:</strong> Carotenoid &rarr; Diệp lục b &rarr; Diệp lục a &rarr; Diệp lục a ở trung tâm phản ứng.</p>
+
+        <h4>☀️ 2. Hai Pha Của Quá Trình Quang Hợp:</h4>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">Pha Sáng (Ở màng Thylakoid của lục lạp)</div>
+                <p>• <strong>Điều kiện:</strong> Bắt buộc phải có ánh sáng mặt trời.<br>
+                • <strong>Bản chất:</strong> Diệp lục hấp thụ ánh sáng để thực hiện <strong>quang phân ly nước</strong>:<br>
+                <strong style="color:var(--accent);">2 H₂O &rarr; 4 H⁺ + 4 e⁻ + O₂&uarr;</strong><br>
+                • <strong>Sản phẩm tạo ra:</strong> <strong>ATP, NADPH và khí O₂</strong>.<br>
+                <em>(Lưu ý thi: Toàn bộ khí O₂ bay ra trong quang hợp đều có nguồn gốc từ phân tử H₂O, không phải từ CO₂).</em></p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">Pha Tối / Pha đồng hóa CO₂ (Ở chất nền Stroma)</div>
+                <p>• <strong>Điều kiện:</strong> Không cần ánh sáng trực tiếp (diễn ra cả khi có sáng và trong tối miễn là còn sản phẩm của pha sáng).<br>
+                • <strong>Bản chất:</strong> Sử dụng <strong>năng lượng ATP và NADPH</strong> từ pha sáng để biến đổi khí <strong>CO₂ thành đường glucose (C₆H₁₂O₆)</strong> qua chu trình Calvin.<br>
+                • <strong>Sản phẩm tạo ra:</strong> Hợp chất hữu cơ (Carbohydrate/Glucose) và giải phóng lại ADP, NADP⁺ cho pha sáng.</p>
             </div>
         </div>
 
-        <h4>🔑 2. Pha Sáng (Màng Thylakoid) & Pha Tối (Chất Nền Stroma):</h4>
-        <div class="card-grid-2">
-            <div class="sub-card">
-                <div class="sub-card-title">Pha Sáng (Tại Màng Thylakoid)</div>
-                <p><strong>Bắt buộc có ánh sáng</strong>. Xảy ra phản ứng <strong>quang phân li nước</strong> trong xoang thylakoid:</p>
-                <div class="formula-box"><strong>2 H₂O &rarr; (AS, Diệp lục) &rarr; 4 H⁺ + 4 e⁻ + O₂&uarr;</strong></div>
-                <p>⚠️ <em>Bẫy trắc nghiệm:</em> Khí <strong>O₂ thoát ra có nguồn gốc từ H₂O</strong>, hoàn toàn <strong>không phải từ CO₂</strong>.<br>
-                <strong>Sản phẩm pha sáng:</strong> <strong>ATP, NADPH</strong> (chuyển sang pha tối) và <strong>O₂</strong> (thoát ra khí quyển).</p>
-            </div>
-            <div class="sub-card">
-                <div class="sub-card-title">Pha Tối (Chu trình Calvin tại Stroma)</div>
-                <p>Diễn ra cả khi có ánh sáng và trong tối (chỉ cần có đủ ATP và NADPH từ pha sáng). Gồm 3 giai đoạn:<br>
-                <strong>1. Cố định CO₂:</strong> CO₂ kết hợp với <strong>RuBP (5C)</strong> nhờ enzyme <strong>Rubisco</strong> tạo <strong>3-PGA (3C)</strong>.<br>
-                <strong>2. Khử:</strong> 3-PGA được khử bằng <strong>ATP và NADPH</strong> tạo thành <strong>G3P</strong>.<br>
-                <strong>3. Tái sinh RuBP & Tổng hợp đường:</strong> G3P tái sinh RuBP và chuyển hóa thành <strong>Glucose, Tinh bột</strong>.</p>
-            </div>
+        <h4>🌿 3. So Sánh 3 Nhóm Thực Vật C₃, C₄ Và CAM:</h4>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Đặc điểm</th>
+                        <th>Thực vật C₃</th>
+                        <th>Thực vật C₄</th>
+                        <th>Thực vật CAM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Đại diện</strong></td>
+                        <td>Đa số thực vật: <strong>lúa, khoai, sắn, đậu, cam</strong></td>
+                        <td>Cây vùng nhiệt đới: <strong>ngô, mía, kê, cỏ lồng vực</strong></td>
+                        <td>Cây vùng sa mạc, khô hạn: <strong>xương rồng, dứa, thanh long</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chất nhận CO₂ đầu tiên</strong></td>
+                        <td>RuBP (hợp chất 5C)</td>
+                        <td>PEP (hợp chất 3C)</td>
+                        <td>PEP (hợp chất 3C)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sản phẩm cố định CO₂ đầu</strong></td>
+                        <td><strong>3-PGA (hợp chất 3C)</strong> &rarr; gọi là C₃</td>
+                        <td><strong>OAA (hợp chất 4C)</strong> &rarr; gọi là C₄</td>
+                        <td><strong>OAA (hợp chất 4C)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thời gian & Không gian</strong></td>
+                        <td>Diễn ra ban ngày, chỉ ở 1 loại tế bào mô giậu.</td>
+                        <td>Diễn ra ban ngày, ở <strong>2 loại tế bào: mô giậu và bao bó mạch</strong>.</td>
+                        <td>Cố định CO₂ vào <strong>ban đêm</strong> (khi khí khổng mở); tổng hợp đường vào <strong>ban ngày</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hô hấp sáng</strong></td>
+                        <td><strong>Có hô hấp sáng</strong> (hao phí 30-50% sản phẩm quang hợp khi nắng gắt).</td>
+                        <td><strong>Không có hô hấp sáng</strong>.</td>
+                        <td><strong>Không có hô hấp sáng</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Năng suất sinh học</strong></td>
+                        <td>Trung bình</td>
+                        <td><strong>Cao nhất</strong> (gấp đôi cây C₃)</td>
+                        <td>Thấp (chủ yếu để sinh tồn chống hạn)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <h4>🌾 3. Bảng So Sánh Toàn Diện Thực Vật C3 - C4 - CAM (Bắt buộc thuộc):</h4>
-        <div class="table-responsive"><div class="scroll-hint">👉 Vuốt sang ngang để đọc hết bảng</div><table class="data-table">
-            <thead>
-                <tr>
-                    <th>Tiêu chí</th>
-                    <th>Thực vật C3</th>
-                    <th>Thực vật C4</th>
-                    <th>Thực vật CAM</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Đại diện</strong></td>
-                    <td><strong>Lúa nước, đậu tương, khoai, sắn, rau cải</strong>.</td>
-                    <td><strong>Mía, ngô (bắp), cao lương, cỏ lồng vực, rau dền</strong>.</td>
-                    <td><strong>Xương rồng, dứa (khóm), thanh long, nha đam</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Chất nhận CO₂ đầu</strong></td>
-                    <td><strong>RuBP (hợp chất 5C)</strong></td>
-                    <td><strong>PEP (hợp chất 3C)</strong></td>
-                    <td><strong>PEP (hợp chất 3C)</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>Sản phẩm cố định đầu</strong></td>
-                    <td><strong>3-PGA (hợp chất 3C)</strong></td>
-                    <td><strong>AOA (hợp chất 4C)</strong></td>
-                    <td><strong>AOA (hợp chất 4C)</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>Tế bào quang hợp</strong></td>
-                    <td>Chỉ có <strong>1 loại: Tế bào mô giậu</strong>.</td>
-                    <td>Có <strong>2 loại: Tế bào mô giậu</strong> và <strong>Tế bào bao bó mạch</strong>.</td>
-                    <td>Chỉ có <strong>1 loại: Tế bào mô giậu</strong> mọng nước.</td>
-                </tr>
-                <tr>
-                    <td><strong>Thời gian cố định CO₂</strong></td>
-                    <td>Diễn ra vào <strong>Ban ngày</strong>.</td>
-                    <td>Diễn ra vào <strong>Ban ngày</strong> (tách biệt về không gian).</td>
-                    <td>Cố định CO₂ sơ khởi vào <strong>BAN ĐÊM</strong>; Chu trình Calvin vào <strong>BAN NGÀY</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Đóng mở khí khổng</strong></td>
-                    <td><strong>Mở ban ngày</strong>, đóng ban đêm.</td>
-                    <td><strong>Mở ban ngày</strong>, khép nhỏ khi nắng gắt.</td>
-                    <td><strong>ĐÓNG BAN NGÀY</strong> (tiết kiệm nước), <strong>MỞ BAN ĐÊM</strong> để nhận CO₂.</td>
-                </tr>
-                <tr>
-                    <td><strong>Hô hấp sáng (Lãng phí)</strong></td>
-                    <td><strong>CÓ</strong> (lãng phí 30 - 50% sản phẩm quang hợp khi nắng gắt).</td>
-                    <td><strong>KHÔNG CÓ</strong> (nồng độ CO₂ ở bao bó mạch luôn được bơm rất cao).</td>
-                    <td><strong>KHÔNG CÓ</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>Năng suất sinh học</strong></td>
-                    <td>Trung bình</td>
-                    <td><strong>CAO NHẤT (gấp đôi thực vật C3)</strong></td>
-                    <td>Thấp (thích nghi sinh tồn khô hạn).</td>
-                </tr>
-            </tbody>
-        </table></div>
         
-                    </div>
+            </div>
+        </div>
+    
+        <div class="group-card open" id="card-bai-5" data-lesson="bai-5">
+            <div class="group-header" onclick="toggleCard('card-bai-5')">
+                <div>
+                    <span class="lesson-badge">BÀI 5</span>
+                    <span class="group-title">Phát Triển Quang Hợp Để Nâng Cao Năng Suất Cây Trồng</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 30 - 36</div>
                 </div>
-        
-                <div class="group-card open" id="card-bai-5" data-lesson="bai-5">
-                    <div class="group-header" onclick="toggleCard('card-bai-5')">
-                        <div>
-                            <span class="lesson-badge">BÀI 5</span>
-                            <div class="group-title">Thúc Đẩy Quang Hợp Để Nâng Cao Năng Suất Cây Trồng</div>
-                            <div class="group-subtitle">Chương I • Bài 5 (Trang 30 - 36)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
-        <h4>📌 1. Các Nhân Tố Ngoại Cảnh Ảnh Hưởng Đến Quang Hợp:</h4>
-        <ul>
-            <li><strong>Ánh sáng:</strong>
-                <ul>
-                    <li><em>Điểm bù ánh sáng:</em> Cường độ ánh sáng mà tại đó <strong>cường độ quang hợp bằng cường độ hô hấp</strong>.</li>
-                    <li><em>Điểm bão hòa ánh sáng:</em> Cường độ ánh sáng mà tại đó <strong>cường độ quang hợp đạt cực đại</strong>, tăng thêm ánh sáng quang hợp không tăng.</li>
-                    <li><em>Quang phổ:</em> Diệp lục hấp thụ mạnh nhất ở dải <strong>Đỏ (640 - 660 nm)</strong> và <strong>Xanh tím (430 - 450 nm)</strong>.</li>
-                </ul>
-            </li>
-            <li><strong>Nồng độ CO₂:</strong> Điểm bù CO₂ (quang hợp = hô hấp); Điểm bão hòa CO₂ (quang hợp đạt tối đa). Tăng nồng độ CO₂ trong giới hạn làm tăng quang hợp rõ rệt.</li>
-            <li><strong>Nhiệt độ:</strong> Nhiệt độ tối ưu cho quang hợp từ <strong>25 - 35°C</strong>; nhiệt độ quá cao làm biến tính enzyme Rubisco và tăng hô hấp sáng.</li>
-            <li><strong>Nước:</strong> Vừa là nguyên liệu trực tiếp của quang phân li nước, vừa điều tiết độ mở khí khổng để hấp thụ CO₂.</li>
-        </ul>
-
-        <h4>🔑 2. Các Biện Pháp Kĩ Thuật Nâng Cao Năng Suất Cây Trồng:</h4>
-        <div class="note-box">
-            <ul>
-                <li><strong>1. Tăng diện tích bề mặt lá:</strong> Tỉa cành, bón phân hợp lí, mật độ gieo trồng tối ưu để cây đón nhận tối đa ánh sáng mặt trời.</li>
-                <li><strong>2. Tăng hiệu suất quang hợp:</strong> Tuyển chọn các giống cây trồng có hoạt tính quang hợp cao (giống thực vật C4, giống lai ưu thế).</li>
-                <li><strong>3. Tăng hệ số kinh tế:</strong> Bón phân cân đối vào giai đoạn sinh sản để kích thích vận chuyển đường sucrose vào cơ quan dự trữ (củ, quả, hạt).</li>
-            </ul>
+                <div class="group-arrow">▼</div>
+            </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Năng suất cây trồng 90 - 95% do quang hợp quyết định. Trồng cây trong nhà màng dùng <strong>đèn LED đỏ và xanh</strong> vừa tiết kiệm điện, vừa kích thích cây lớn vùn vụt và ra hoa trái vụ.
         </div>
 
-        <h4>🌾 3. Ứng Dụng Đèn LED Trong Nông Nghiệp Hiện Đại (Hình 4.10 SGK - Câu hỏi Tự luận):</h4>
+        <h4>📌 1. Các Nhân Tố Ảnh Hưởng Đến Quang Hợp:</h4>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">Ánh sáng & Nồng độ CO₂</div>
+                <p>• <strong>Điểm bù ánh sáng / CO₂:</strong> Mức độ mà tại đó tốc độ quang hợp bằng tốc độ hô hấp (cây vừa đủ hòa vốn).<br>
+                • <strong>Điểm bão hòa ánh sáng / CO₂:</strong> Mức độ mà tại đó quang hợp đạt tối đa. Vượt quá ngưỡng này cây không quang hợp thêm được nữa, thậm chí bị tổn thương.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">Nhiệt độ & Nước</div>
+                <p>• <strong>Nhiệt độ:</strong> Tối ưu từ 25 - 35°C cho hầu hết cây trồng.<br>
+                • <strong>Nước:</strong> Vừa là nguyên liệu trực tiếp ở pha sáng, vừa quyết định độ trương để đóng mở khí khổng đón CO₂.</p>
+            </div>
+        </div>
+
+        <h4>💡 2. Ứng Dụng Đèn LED Trong Nông Nghiệp Hiện Đại (Rất Hay Thi Tự Luận):</h4>
         <div class="highlight-card">
-            <ul>
-                <li><strong>Phát đúng bước sóng hấp thụ của diệp lục:</strong> Đèn LED phát chính xác 2 dải bước sóng: <strong>Đỏ (640 - 660 nm)</strong> kích thích phân hóa mầm hoa, vươn dài chồi, tích lũy tinh bột và <strong>Xanh tím (430 - 450 nm)</strong> kích thích mở khí khổng, tổng hợp protein. <strong>Loại bỏ hoàn toàn các dải quang phổ lãng phí</strong>.</li>
-                <li><strong>Nguồn sáng lạnh:</strong> Tỏa nhiệt cực thấp, cho phép <strong>treo sát tán lá cây</strong> mà không gây sốc nhiệt hay cháy mép lá.</li>
-                <li><strong>Tiết kiệm điện & tuổi thọ cao:</strong> Tiết kiệm <strong>50 - 70% điện năng</strong>, tuổi thọ trên 50.000 giờ thắp sáng.</li>
-                <li><strong>Chủ động điều khiển quang chu kì:</strong> Giúp người nông dân <strong>ép cây ra hoa trái vụ</strong> (thanh long, hoa cúc), là nền tảng cốt lõi của <strong>nông nghiệp thẳng đứng nhiều tầng (Vertical Farming)</strong> trong nhà kính thông minh.</li>
-            </ul>
+            <p><strong>Cơ sở khoa học của việc sử dụng hệ thống đèn LED chuyên dụng trong trồng trọt (nhà màng, nông nghiệp công nghệ cao):</strong></p>
+            <ol style="margin-left:20px; margin-top:8px; line-height:1.7;">
+                <li><strong>Phù hợp chính xác phổ hấp thụ của lá:</strong> Đèn LED phát ra đúng các bước sóng ánh sáng mà hệ sắc tố diệp lục hấp thụ mạnh nhất, đặc biệt là <strong>ánh sáng Đỏ (bước sóng ~660 nm)</strong> giúp quang hợp tạo sinh khối mạnh mẽ và <strong>ánh sáng Xanh dương (bước sóng ~450 nm)</strong> kích thích tổng hợp protein, làm lá dày khỏe.</li>
+                <li><strong>Tỏa nhiệt rất thấp:</strong> Không sinh nhiều nhiệt như bóng đèn sợi đốt hay huỳnh quang, không làm cháy lá hoặc khô héo cây, có thể đặt đèn sát tán lá trong các giàn trồng nhiều tầng (nông nghiệp thẳng đứng).</li>
+                <li><strong>Tiết kiệm điện và độ bền cao:</strong> Tiết kiệm tới 60 - 80% điện năng tiêu thụ, tuổi thọ bóng đèn cao giúp giảm chi phí sản xuất.</li>
+                <li><strong>Điều khiển quang chu kì và ra hoa trái vụ:</strong> Dễ dàng điều chỉnh thời gian chiếu sáng trong ngày để kích thích cây sinh trưởng liên tục hoặc điều khiển cây ra hoa trái vụ (ví dụ: thắp đèn ban đêm cho thanh long, hoa cúc ra hoa đúng vụ Tết).</li>
+            </ol>
         </div>
         
-                    </div>
+            </div>
+        </div>
+    
+        <div class="group-card open" id="card-bai-6" data-lesson="bai-6">
+            <div class="group-header" onclick="toggleCard('card-bai-6')">
+                <div>
+                    <span class="lesson-badge">BÀI 6</span>
+                    <span class="group-title">Hô Hấp Ở Thực Vật</span>
+                    <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">SGK Kết Nối Tri Thức • Trang 37 - 42</div>
                 </div>
-        
-                <div class="group-card open" id="card-bai-6" data-lesson="bai-6">
-                    <div class="group-header" onclick="toggleCard('card-bai-6')">
-                        <div>
-                            <span class="lesson-badge">BÀI 6</span>
-                            <div class="group-title">Hô Hấp Ở Thực Vật</div>
-                            <div class="group-subtitle">Chương I • Bài 6 (Trang 37 - 42)</div>
-                        </div>
-                        <div class="group-arrow">▼</div>
-                    </div>
-                    <div class="group-body">
-                        
+                <div class="group-arrow">▼</div>
+            </div>
+            <div class="group-body">
+                
+        <div class="easy-explain">
+            💡 <strong>Tóm tắt siêu ngắn:</strong> Cây hô hấp để lấy năng lượng sống. Khi có Oxy thì hô hấp hiếu khí tạo <strong>30-32 ATP</strong>. Khi bị ngập úng thiếu Oxy thì rễ lên men tạo <strong>chất độc rượu cồn (ethanol)</strong> làm thối rụng lông hút $ightarrow$ cây chết khát!
+        </div>
+
         <h4>📌 1. Khái Niệm, Phương Trình & Vai Trò Của Hô Hấp:</h4>
         <div class="highlight-card">
-            <p><strong>Hô hấp ở thực vật</strong> là quá trình oxy hóa sinh học các hợp chất hữu cơ (chủ yếu là glucose) thành <strong>CO₂ và H₂O</strong>, đồng thời giải phóng năng lượng tích lũy trong <strong>ATP</strong> và tỏa <strong>nhiệt năng</strong>.</p>
+            <p><strong>Hô hấp ở thực vật</strong> là quá trình phân giải hợp chất hữu cơ (chủ yếu là đường glucose) thành <strong>CO₂ và H₂O</strong>, đồng thời giải phóng năng lượng tích lũy trong <strong>ATP</strong> và tỏa <strong>nhiệt</strong>.</p>
             <div class="formula-box"><strong>C₆H₁₂O₆ + 6 O₂ &rarr; 6 CO₂ + 6 H₂O + Năng lượng (Nhiệt + 30 đến 32 ATP)</strong></div>
-            <p><strong>Vai trò hô hấp:</strong> Cung cấp năng lượng <strong>ATP</strong> cho mọi hoạt động sống; tỏa <strong>nhiệt</strong> duy trì thân nhiệt; tạo ra các <strong>sản phẩm trung gian</strong> (pyruvate, acetyl-CoA) làm nguyên liệu tổng hợp các chất hữu cơ khác.</p>
+            <p>• <strong>Vai trò:</strong> Cung cấp năng lượng <strong>ATP</strong> cho mọi hoạt động sống (hút khoáng, phân chia tế bào...); tỏa <strong>nhiệt</strong> duy trì thân nhiệt chống rét; tạo ra các sản phẩm trung gian để tổng hợp các chất khác.</p>
         </div>
 
-        <h4>🔑 2. Ba Giai Đoạn Hô Hấp Hiếu Khí (Có O₂):</h4>
-        <div class="table-responsive"><div class="scroll-hint">👉 Vuốt sang ngang để đọc hết bảng</div><table class="data-table">
-            <thead>
-                <tr>
-                    <th>Giai đoạn</th>
-                    <th>Vị trí diễn ra</th>
-                    <th>Nguyên liệu</th>
-                    <th>Sản phẩm & Năng lượng ATP</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>1. Đường phân (Glycolysis)</strong></td>
-                    <td><strong>Bào tương (Tế bào chất)</strong></td>
-                    <td>1 Glucose, 2 NAD⁺, 2 ADP</td>
-                    <td>2 Pyruvate (3C), 2 NADH, <strong>2 ATP ròng</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>2. Chu trình Krebs</strong></td>
-                    <td><strong>Chất nền Ti thể (Matrix)</strong></td>
-                    <td>2 Pyruvate biến đổi thành Acetyl-CoA</td>
-                    <td>6 CO₂, 8 NADH, 2 FADH₂, <strong>2 ATP</strong>.</td>
-                </tr>
-                <tr>
-                    <td><strong>3. Chuỗi truyền electron</strong></td>
-                    <td><strong>Màng trong Ti thể (Cristae)</strong></td>
-                    <td>NADH, FADH₂, O₂</td>
-                    <td>H₂O và <strong>26 - 28 ATP</strong>.</td>
-                </tr>
-            </tbody>
-        </table></div>
-        <p style="text-align:center; margin:8px 0; font-size:1rem; color:#10b981;">
-            👉 <strong>Tổng năng lượng: 1 phân tử Glucose phân giải hoàn toàn hiếu khí tạo ra 30 ĐẾN 32 ATP.</strong>
-        </p>
-
-        <h4>⚠️ 3. Con Đường Lên Men Kị Khí (Khi Thiếu O₂ / Ngập Úng):</h4>
-        <div class="sub-card">
-            <p>Khi thiếu oxy, pyruvate không vào ti thể mà bị biến đổi ngay trong tế bào chất thành <strong>Rượu Ethanol (C₂H₅OH)</strong> hoặc <strong>Acid Lactic</strong>. Quá trình này <strong>chỉ thu được vỏn vẹn 2 ATP</strong> từ đường phân; đồng thời tích tụ ethanol đầu độc làm rễ cây thối chết.</p>
+        <h4>⚡ 2. Hai Con Đường Hô Hấp Ở Thực Vật:</h4>
+        <div class="card-grid-2" style="margin-top:12px;">
+            <div class="sub-card">
+                <div class="sub-card-title">1. Hô Hấp Hiếu Khí (Khi có đủ Oxy)</div>
+                <p>• <strong>Nơi diễn ra:</strong> Tế bào chất và ty thể.<br>
+                • <strong>Các giai đoạn:</strong> Đường phân &rarr; Chu trình Krebs &rarr; Chuỗi truyền electron hô hấp.<br>
+                • <strong>Hiệu quả:</strong> Phân giải hoàn toàn glucose tạo ra <strong>30 đến 32 ATP</strong> và giải phóng CO₂, H₂O.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">2. Lên Men Kị Khí (Khi thiếu Oxy / Ngập úng)</div>
+                <p>• <strong>Nơi diễn ra:</strong> Tế bào chất.<br>
+                • <strong>Các giai đoạn:</strong> Đường phân &rarr; Lên men tạo <strong>rượu ethanol</strong> hoặc axit lactic.<br>
+                • <strong>Hiệu quả:</strong> Chỉ tạo ra <strong>2 ATP</strong> ít ỏi và tích tụ <strong>rượu ethanol độc hại</strong> cho tế bào.</p>
+            </div>
         </div>
 
-        <h4>🌾 4. Bốn (4) Biện Pháp Kĩ Thuật Bảo Quản Hạt & Nông Sản:</h4>
-        <ul>
-            <li><strong>1. Bảo quản khô:</strong> Phơi hoặc sấy khô hạt giống xuống <strong>độ ẩm &lt; 13%</strong> để đưa cường độ hô hấp về mức tối thiểu.</li>
-            <li><strong>2. Bảo quản lạnh:</strong> Đưa rau quả vào kho lạnh (<strong>1 - 5°C</strong>) để ức chế hoạt tính enzyme hô hấp.</li>
-            <li><strong>3. Bảo quản nồng độ CO₂ cao:</strong> Bơm khí <strong>CO₂ nồng độ 2 - 4%</strong> vào kho kín để ức chế hô hấp.</li>
-            <li><strong>4. Bảo quản nồng độ O₂ thấp:</strong> Rút giảm oxy xuống <strong>&lt; 5%</strong> hoặc hút chân không để hạn chế hao hụt chất hữu cơ.</li>
-        </ul>
-
-        <h4>⭐ 5. Mối Quan Hệ Giữa Quang Hợp Và Hô Hấp & Hô Hấp Sáng:</h4>
+        <h4>🌊 3. Giải Thích Hiện Tượng Rễ Cây Ngập Úng Bị Héo Rũ & Chết (Tự Luận Trúng Tủ):</h4>
         <div class="note-box">
+            <ol style="margin-left:20px; line-height:1.7;">
+                <li>Khi đất bị ngập nước lâu ngày, nước lấp đầy các khe hở trong đất dẫn đến đất bị <strong>thiếu khí Oxy nghiêm trọng</strong>.</li>
+                <li>Rễ cây thiếu Oxy không thể hô hấp hiếu khí, buộc phải chuyển sang <strong>con đường lên men kị khí</strong>.</li>
+                <li>Quá trình lên men này chỉ tạo ra <strong>2 ATP</strong> (không đủ năng lượng cho rễ hoạt động) và sinh ra <strong>rượu ethanol tích tụ đầu độc làm thối và chết rụng các tế bào lông hút</strong>.</li>
+                <li>Mất lông hút, cây <strong>không còn khả năng hút nước và muối khoáng</strong> từ đất. Trong khi đó, lá cây phía trên vẫn liên tục thoát hơi nước $ightarrow$ làm cây bị mất cân bằng nước nghiêm trọng, dẫn đến <strong>lá héo rũ, vàng lá và cây bị chết</strong>.</li>
+            </ol>
+        </div>
+
+        <h4>🌱 4. Giải Thích Việc Ngâm Hạt Vào Nước & Ủ Hạt Trước Khi Gieo (SGK Trang 42):</h4>
+        <div class="highlight-card">
+            <p><strong>Cơ sở khoa học của việc ngâm hạt giống vào nước và ủ hạt trước khi gieo trồng:</strong></p>
+            <ol style="margin-left:20px; margin-top:8px; line-height:1.7;">
+                <li><strong>Ngâm hạt vào nước:</strong> Hạt khô đang ở <strong>trạng thái tiềm sinh</strong> (độ ẩm dưới 13%, hô hấp gần như ngừng trệ). Khi ngâm vào nước, hạt hút nước trương to lên, làm mềm lớp vỏ hạt và <strong>kích hoạt các enzyme hô hấp hoạt động trở lại</strong>.</li>
+                <li><strong>Cung cấp năng lượng cho mầm phát triển:</strong> Hô hấp tế bào phân giải chất hữu cơ dự trữ trong hạt thành đường và tạo ra <strong>năng lượng ATP</strong>, cung cấp vật chất và năng lượng để chồi mầm và rễ mầm sinh trưởng đâm thủng vỏ hạt chui ra ngoài.</li>
+                <li><strong>Ủ hạt:</strong> Cung cấp <strong>nhiệt độ ấm thích hợp (25 - 35°C)</strong> giúp enzyme hô hấp hoạt động tối ưu nhất, đồng thời giữ <strong>độ ẩm và độ thoáng khí có đủ Oxy</strong> cho hạt hô hấp hiếu khí (tránh đọng nước gây thối mầm) $ightarrow$ Giúp hạt nảy mầm nhanh, khỏe mạnh và đồng loạt.</li>
+            </ol>
+        </div>
+
+        <h4>📦 5. Bốn Biện Pháp Bảo Quản Nông Sản:</h4>
+        <p style="margin-bottom:8px; font-size:13.5px;">Nguyên lý chung: <strong>Hạ tốc độ hô hấp của nông sản xuống mức tối thiểu</strong> để tránh tiêu hao chất dinh dưỡng và tỏa nhiệt làm hỏng củ/hạt.</p>
+        <div class="card-grid-2">
+            <div class="sub-card">
+                <div class="sub-card-title">1. Bảo quản khô (Phơi, sấy khô)</div>
+                <p>Giảm độ ẩm của hạt giống xuống dưới 13% để đưa hạt về trạng thái tiềm sinh, hô hấp tối thiểu.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">2. Bảo quản lạnh (Kho lạnh)</div>
+                <p>Hạ nhiệt độ môi trường làm giảm hoạt tính của các enzyme hô hấp trong rau, củ, quả tươi.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">3. Bảo quản nồng độ CO₂ cao</div>
+                <p>Chủ động bơm khí CO₂ vào kho kín để ức chế mạnh quá trình hô hấp của nông sản.</p>
+            </div>
+            <div class="sub-card">
+                <div class="sub-card-title">4. Bảo quản hút chân không</div>
+                <p>Rút sạch không khí chứa Oxy ra khỏi bao bì để ngăn chặn hô hấp hiếu khí và vi khuẩn phát triển.</p>
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    
+                </div>
+            </div>
+
+            <!-- TAB 2: TỰ LUẬN TRÚNG TỦ -->
+            <div id="tab-essay" class="tab-pane">
+                <div class="hero-banner">
+                    <h2>5 Câu Tự Luận "Trúng Tủ" (Bám Sát Đề Cương & Bài Tập SGK)</h2>
+                    <p>Bao gồm cả câu <strong>Ngâm ủ hạt giống (SGK Bài 6 trang 42)</strong> và câu <strong>Đèn LED (SGK Bài 5 trang 36)</strong> kèm lời giải bình dị, dễ nhớ.</p>
+                </div>
+
+                
+        <div class="essay-card" id="card-tl-1">
+            <div class="essay-header-row">
+                <span class="essay-tag">TL-1</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Bài 1. Khái quát TĐC & CHNL</span>
+                <span class="essay-score">1.0 điểm</span>
+            </div>
+            <div class="essay-title">Câu 1: Hãy nêu các dấu hiệu đặc trưng của trao đổi chất và chuyển hoá năng lượng ở sinh vật.</div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Tiêu chí chấm</th>
+                            <th style="width: 15%; text-align:center;">Điểm</th>
+                            <th style="width: 50%;">Nội dung chuẩn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Nêu đủ tên 7 dấu hiệu đặc trưng</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Tiếp nhận và vận chuyển chất; Biến đổi chất kèm chuyển hóa năng lượng; Thải các chất ra môi trường; Điều hòa; Cảm ứng; Sinh trưởng và phát triển; Sinh sản.</td></tr><tr><td><strong>Giải thích tóm tắt bản chất của các dấu hiệu</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Đồng hóa là tổng hợp chất tích lũy năng lượng; Dị hóa là phân giải chất giải phóng ATP; Thải chất để duy trì cân bằng nội môi.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:14px;">
+                <div style="color:var(--accent); font-weight:700; font-size:14px; margin-bottom:6px;">🗣️ Cách trả lời bằng từ ngữ dễ hiểu (Ghi trọn 1.0 điểm):</div>
+                
+        <div class="note-box">
+            <strong>7 dấu hiệu cần viết:</strong>
+            <ol style="margin-left:20px; line-height:1.7;">
+                <li><strong>Tiếp nhận và vận chuyển các chất:</strong> Lấy chất từ môi trường vào và chuyển đến các tế bào.</li>
+                <li><strong>Biến đổi chất kèm chuyển hóa năng lượng:</strong> Gồm <em>đồng hóa</em> (tổng hợp chất mới, tích lũy năng lượng) và <em>dị hóa</em> (phân giải chất, giải phóng ATP).</li>
+                <li><strong>Thải các chất ra môi trường:</strong> Tống xuất chất cặn bã ra ngoài để giữ cân bằng môi trường bên trong cơ thể (cân bằng nội môi).</li>
+                <li><strong>Điều hòa:</strong> Tự điều chỉnh các quá trình sống nhờ hormone (ở thực vật) hoặc thần kinh và hormone (ở động vật).</li>
+                <li><strong>Cảm ứng:</strong> Phản ứng lại các kích thích từ môi trường để tồn tại.</li>
+                <li><strong>Sinh trưởng và phát triển:</strong> Tăng kích thước khối lượng và biến đổi thành các bộ phận mới.</li>
+                <li><strong>Sinh sản:</strong> Sinh ra thế hệ con cháu để duy trì giống loài.</li>
+            </ol>
+        </div>
+        
+            </div>
+        </div>
+    
+        <div class="essay-card" id="card-tl-2">
+            <div class="essay-header-row">
+                <span class="essay-tag">TL-2</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Bài 2. Nước & Khoáng ở thực vật</span>
+                <span class="essay-score">1.0 điểm</span>
+            </div>
+            <div class="essay-title">Câu 2: Nước và chất khoáng được vận chuyển từ tế bào lông hút vào mạch gỗ của rễ theo hai con đường nào? Vì sao dòng nước khi đi qua nội bì lại không thể đi theo khoảng không gian giữa các tế bào mà phải đi xuyên qua màng sinh chất của tế bào nội bì?</div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Tiêu chí chấm</th>
+                            <th style="width: 15%; text-align:center;">Điểm</th>
+                            <th style="width: 50%;">Nội dung chuẩn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Nêu tên và đặc điểm 2 con đường</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Con đường gian bào (đi qua khoảng trống giữa các vách tế bào) và Con đường tế bào chất (đi xuyên qua màng và dịch tế bào chất).</td></tr><tr><td><strong>Giải thích vai trò của đai Caspary ở tế bào nội bì</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Tế bào nội bì có vòng đai Caspary chống thấm nước, chặn con đường gian bào lại, bắt buộc nước phải chuyển hướng đi qua màng sinh chất để tế bào kiểm soát và chọn lọc chất.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:14px;">
+                <div style="color:var(--accent); font-weight:700; font-size:14px; margin-bottom:6px;">🗣️ Cách trả lời bằng từ ngữ dễ hiểu (Ghi trọn 1.0 điểm):</div>
+                
+        <div class="note-box">
+            <p><strong>Ý 1: Hai con đường vận chuyển (0.5 điểm):</strong></p>
             <ul>
-                <li><strong>Quang hợp và Hô hấp là hai mặt đối lập nhưng thống nhất:</strong> Quang hợp tổng hợp chất hữu cơ và thải O₂ cung cấp nguyên liệu cho hô hấp; ngược lại, hô hấp phân giải chất hữu cơ tạo CO₂ và H₂O cung cấp nguyên liệu cho quang hợp.</li>
-                <li><strong>Hô hấp sáng (Photorespiration):</strong> Quá trình oxy hóa RuBP diễn ra trong điều kiện ánh sáng mạnh, nhiệt độ cao ở <strong>thực vật C3</strong> (lúa, khoai, đậu). Hô hấp sáng <strong>không tạo ra ATP</strong> mà gây <strong>lãng phí 30 - 50% sản phẩm quang hợp</strong>, làm giảm năng suất cây trồng.</li>
+                <li><strong>Con đường gian bào:</strong> Nước và khoáng đi men theo khoảng không gian giữa các tế bào và thành tế bào. Tốc độ đi nhanh.</li>
+                <li><strong>Con đường tế bào chất:</strong> Nước và khoáng đi xuyên qua màng sinh chất vào trong ruột tế bào rồi chuyền qua các cầu nối giữa các tế bào. Tốc độ đi chậm hơn.</li>
+            </ul>
+            <p style="margin-top:8px;"><strong>Ý 2: Giải thích vì sao qua nội bì phải đi qua màng sinh chất (0.5 điểm):</strong></p>
+            <ul>
+                <li>Ở lớp tế bào nội bì có một vành đai gọi là <strong>đai Caspary</strong> (bản chất có chất suberin không thấm nước).</li>
+                <li>Đai Caspary chặn đứng con đường gian bào không cho nước đi luồn lách qua kẽ hở nữa, <strong>bắt buộc dòng nước và khoáng phải đi xuyên qua màng sinh chất của tế bào nội bì</strong>.</li>
+                <li><strong>Ý nghĩa:</strong> Giúp tế bào nội bì <strong>kiểm soát, chọn lọc các chất khoáng cần thiết và ngăn chặn các chất độc hại</strong> lọt vào mạch gỗ của cây.</li>
             </ul>
         </div>
         
-                    </div>
-                </div>
+            </div>
+        </div>
+    
+        <div class="essay-card" id="card-tl-3">
+            <div class="essay-header-row">
+                <span class="essay-tag">TL-3</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Bài 6. Hô hấp ở thực vật</span>
+                <span class="essay-score">1.0 điểm</span>
+            </div>
+            <div class="essay-title">Câu 3: Khi rễ cây bị ngập úng trong nước thời gian dài, cây sẽ có biểu hiện héo rũ, vàng lá và có thể chết. Dựa vào sự hiểu biết về quá trình hô hấp ở thực vật, hãy giải thích cơ sở sinh lí của hiện tượng trên.</div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Tiêu chí chấm</th>
+                            <th style="width: 15%; text-align:center;">Điểm</th>
+                            <th style="width: 50%;">Nội dung chuẩn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Nêu nguyên nhân thiếu Oxy trong đất ngập úng</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25 đ</td><td>Nước lấp đầy các khe hở trong đất làm rễ cây bị thiếu khí Oxy nghiêm trọng.</td></tr><tr><td><strong>Nêu quá trình lên men kị khí và tạo chất độc</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25 đ</td><td>Rễ thiếu Oxy chuyển sang lên men kị khí, chỉ tạo 2 ATP và tích lũy rượu ethanol độc hại.</td></tr><tr><td><strong>Hậu quả làm thối lông hút mất khả năng hút nước</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25 đ</td><td>Rượu ethanol đầu độc làm thối và chết rụng lông hút, cây mất khả năng hút nước và khoáng.</td></tr><tr><td><strong>Mất cân bằng nước dẫn đến héo rũ và chết</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25 đ</td><td>Lá phía trên vẫn thoát hơi nước mà dưới rễ không hút được nước khiến cây bị mất nước, héo rũ và chết.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:14px;">
+                <div style="color:var(--accent); font-weight:700; font-size:14px; margin-bottom:6px;">🗣️ Cách trả lời bằng từ ngữ dễ hiểu (Ghi trọn 1.0 điểm):</div>
+                
+        <div class="note-box">
+            <ol style="margin-left:20px; line-height:1.7;">
+                <li><strong>Đất thiếu Oxy:</strong> Đất ngập úng lâu ngày khiến nước bịt kín các khe hở trong đất làm rễ cây bị thiếu Oxy nghiêm trọng.</li>
+                <li><strong>Rễ chuyển sang lên men kị khí:</strong> Thiếu Oxy, rễ cây không thể hô hấp hiếu khí mà phải chuyển sang con đường lên men kị khí. Quá trình này chỉ tạo ra <strong>2 ATP</strong> (rất ít năng lượng) và sinh ra <strong>rượu ethanol độc hại</strong>.</li>
+                <li><strong>Lông hút bị thối chết:</strong> Rượu ethanol tích tụ làm đầu độc, gây thối và chết rụng toàn bộ các tế bào lông hút của rễ.</li>
+                <li><strong>Cây bị héo và chết:</strong> Mất lông hút, cây không còn hút được nước và khoáng. Trong khi đó cành lá phía trên vẫn tiếp tục thoát hơi nước $ightarrow$ cây bị mất nước nghiêm trọng, dẫn đến <strong>héo rũ, vàng lá và chết khô ngay trên đất ngập úng</strong>.</li>
+            </ol>
+        </div>
         
             </div>
         </div>
+    
+        <div class="essay-card" id="card-tl-4a">
+            <div class="essay-header-row">
+                <span class="essay-tag">TL-4A</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Bài 6. Hô hấp ở thực vật</span>
+                <span class="essay-score">1.0 điểm</span>
+            </div>
+            <div class="essay-title">Câu 4: Giải thích cơ sở khoa học của việc ngâm hạt giống vào nước và ủ hạt trước khi gieo trồng (Bài tập vận dụng SGK trang 42).</div>
 
-        <!-- TAB 2: 5 CÂU TỰ LUẬN TRÚNG TỦ -->
-        <div id="tab-essay" class="tab-pane">
-            <div class="hero-banner">
-                <h2>5 Câu Tự Luận "Trúng Tủ" (Đề Giáo Viên & Vở Ghi Học Sinh)</h2>
-                <p>Bao gồm cả câu <strong>Ngâm hạt giống ủ hạt (Bài 6 SGK)</strong> và câu <strong>Đèn LED (Bài 5 SGK)</strong> kèm Barem điểm.</p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Tiêu chí chấm</th>
+                            <th style="width: 15%; text-align:center;">Điểm</th>
+                            <th style="width: 50%;">Nội dung chuẩn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cơ sở của việc ngâm hạt vào nước</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Hạt khô ở trạng thái tiềm sinh; ngâm nước làm mềm vỏ và kích hoạt enzyme hô hấp hoạt động trở lại.</td></tr><tr><td><strong>Cơ sở của việc ủ hạt</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Cung cấp nhiệt độ ấm thích hợp (25-35°C) và đủ Oxy cho hô hấp hiếu khí tạo ATP giúp hạt nảy mầm nhanh, đều.</td></tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="essay-card" id="card-tl-1">
-                <div class="essay-header-row">
-                    <span class="essay-tag">Câu 1 (Tự luận)</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted);">Bài 1. Khái quát TĐC & CHNL</span>
-                    <span class="essay-score">1.0 điểm</span>
-                </div>
-                <div class="essay-title">Hãy nêu các dấu hiệu đặc trưng của trao đổi chất và chuyển hoá năng lượng ở sinh vật.</div>
-
-                <div class="table-responsive">
-                    <div class="scroll-hint">👉 Barem thang điểm của Giáo viên</div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 35%;">Nội dung</th>
-                                <th style="width: 15%; text-align:center;">Điểm</th>
-                                <th style="width: 50%;">Tiêu chuẩn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Nêu đủ tên 7 dấu hiệu</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Thu nhận chất; Vận chuyển chất; Biến đổi chất; Tổng hợp & tích lũy năng lượng; Phân giải & giải phóng năng lượng; Đào thải chất; Điều hòa.</td></tr><tr><td><strong>Phân tích Thu nhận & Vận chuyển</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Thực vật lấy nước, khoáng, CO2; động vật lấy thức ăn, O2; vận chuyển qua hệ mạch dẫn hoặc hệ tuần hoàn đến từng tế bào.</td></tr><tr><td><strong>Phân tích Biến đổi, Tổng hợp & Phân giải</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Đồng hóa biến chất đơn giản thành chất hữu cơ phức tạp tích lũy hóa năng; Dị hóa bẻ gãy chất hữu cơ giải phóng năng lượng ATP và nhiệt.</td></tr><tr><td><strong>Phân tích Đào thải & Điều hòa</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Thải CO2, urea, mồ hôi, nước tiểu để ổn định môi trường trong; điều hòa bởi cơ chế thần kinh và thể dịch (hormone, enzyme).</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="btn-view-ans" onclick="toggleAns('ans-tl-1')">
-                    <span>👁️</span> Xem Bài Làm Mẫu Chi Tiết (Ăn Trọn Điểm)
-                </button>
-
-                <div class="essay-ans-body" id="ans-tl-1">
-                    <div style="color:var(--accent); font-weight:bold; margin-bottom:8px;">Bài làm hoàn chỉnh:</div>
-                    
-        <strong>1. Nêu đủ 7 dấu hiệu đặc trưng (Ghi đúng 7 gạch đầu dòng):</strong><br>
-        (1) <strong>Thu nhận các chất từ môi trường ngoài</strong>.<br>
-        (2) <strong>Vận chuyển các chất trong nội bộ cơ thể</strong>.<br>
-        (3) <strong>Biến đổi các chất hóa sinh</strong>.<br>
-        (4) <strong>Tổng hợp các chất và tích lũy năng lượng (Đồng hóa)</strong>.<br>
-        (5) <strong>Phân giải các chất và giải phóng năng lượng (Dị hóa)</strong>.<br>
-        (6) <strong>Đào thải các chất cặn bã ra môi trường</strong>.<br>
-        (7) <strong>Điều hòa hoạt động trao đổi chất và chuyển hóa năng lượng</strong>.<br><br>
-
-        <strong>2. Phân tích chi tiết từng dấu hiệu (Từ khóa ăn trọn điểm):</strong><br>
-        - <em>Thu nhận chất:</em> Thực vật lấy <strong>nước, ion khoáng, CO₂</strong>; Động vật lấy <strong>chất dinh dưỡng, nước và O₂</strong> từ thức ăn.<br>
-        - <em>Vận chuyển:</em> Nước và chất dinh dưỡng lưu thông qua <strong>mạch gỗ và mạch rây</strong> ở thực vật; qua <strong>hệ tuần hoàn máu</strong> ở động vật đến từng tế bào.<br>
-        - <em>Biến đổi:</em> Thủy phân đại phân tử thức ăn thành monomer đơn giản tế bào sử dụng được.<br>
-        - <em>Tổng hợp & tích lũy năng lượng:</em> Đồng hóa biến chất đơn giản thành <strong>hợp chất hữu cơ đặc trưng của cơ thể</strong>, tích lũy hóa năng trong liên kết phân tử.<br>
-        - <em>Phân giải & giải phóng năng lượng:</em> Hô hấp tế bào bẻ gãy chất hữu cơ, giải phóng năng lượng tích lũy trong <strong>ATP</strong> và tỏa <strong>nhiệt</strong>.<br>
-        - <em>Đào thải:</em> Tống xuất <strong>CO₂, urea, mồ hôi, nước tiểu</strong> ra ngoài để bảo vệ môi trường trong cơ thể.<br>
-        - <em>Điều hòa:</em> Duy trì cân bằng nội môi thông qua cơ chế <strong>thần kinh và thể dịch (hormone, enzyme)</strong>.
-        
-                </div>
-            </div>
-        
-            <div class="essay-card" id="card-tl-2">
-                <div class="essay-header-row">
-                    <span class="essay-tag">Câu 2 (Tự luận)</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted);">Bài 2. Trao đổi nước & khoáng ở rễ</span>
-                    <span class="essay-score">0.5 - 0.75 điểm</span>
-                </div>
-                <div class="essay-title">Nước và chất khoáng được vận chuyển từ tế bào lông hút vào mạch gỗ của rễ theo hai con đường nào? Vì sao dòng nước khi đi qua nội bì lại không thể đi theo khoảng không gian giữa các tế bào mà phải đi xuyên qua màng sinh chất của tế bào nội bì?</div>
-
-                <div class="table-responsive">
-                    <div class="scroll-hint">👉 Barem thang điểm của Giáo viên</div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 35%;">Nội dung</th>
-                                <th style="width: 15%; text-align:center;">Điểm</th>
-                                <th style="width: 50%;">Tiêu chuẩn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Kể tên 2 con đường</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Gồm 2 con đường: (1) Con đường gian bào (Apoplast); (2) Con đường tế bào chất (Symplast).</td></tr><tr><td><strong>Mô tả đặc điểm 2 con đường</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Con đường gian bào: đi theo thành tế bào và khoảng gian bào, tốc độ nhanh, không chọn lọc; Con đường tế bào chất: đi xuyên qua màng sinh chất và cầu sinh chất, tốc độ chậm, có tính chọn lọc cao.</td></tr><tr><td><strong>Giải thích vai trò của Đai Caspary</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Nội bì có đai Caspary tẩm suberin không thấm nước chặn con đường gian bào, buộc chuyển sang tế bào chất để kiểm soát, chọn lọc lượng nước và loại ion khoáng đi vào mạch gỗ.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="btn-view-ans" onclick="toggleAns('ans-tl-2')">
-                    <span>👁️</span> Xem Bài Làm Mẫu Chi Tiết (Ăn Trọn Điểm)
-                </button>
-
-                <div class="essay-ans-body" id="ans-tl-2">
-                    <div style="color:var(--accent); font-weight:bold; margin-bottom:8px;">Bài làm hoàn chỉnh:</div>
-                    
-        <strong>1. Kể tên và nêu đặc điểm 2 con đường vận chuyển:</strong><br>
-        - <strong>Con đường gian bào (Apoplast):</strong> Nước và ion khoáng đi men theo <strong>thành tế bào và len lỏi qua các khoảng trống gian bào</strong>. Đặc điểm: <strong>Tốc độ nhanh, lực cản thấp, nhưng không có tính chọn lọc</strong> vật chất.<br>
-        - <strong>Con đường tế bào chất (Symplast):</strong> Nước và ion khoáng đi <strong>xuyên qua màng sinh chất vào tế bào chất</strong> của tế bào lông hút, rồi truyền qua hệ thống <strong>cầu sinh chất (plasmodesmata)</strong>. Đặc điểm: <strong>Tốc độ chậm hơn nhưng có tính chọn lọc cao</strong> nhờ màng sinh chất bán thấm.<br><br>
-
-        <strong>2. Giải thích vì sao khi đến nội bì phải chuyển con đường:</strong><br>
-        - Ở lớp tế bào nội bì của rễ, trên bề mặt thành tế bào có một đai sáp không thấm nước được gọi là <strong>ĐAI CASPARY</strong> (bản chất tẩm chất <strong>suberin và lignin kị nước</strong>).<br>
-        - Khi dòng nước và khoáng đi theo con đường gian bào đến nội bì, gặp đai Caspary sẽ <strong>bị chặn lại hoàn toàn</strong>, không thể thấm tiếp qua khoảng trống giữa các tế bào.<br>
-        - Do đó, bắt buộc dòng nước và ion khoáng phải <strong>chuyển hướng đi xuyên qua màng sinh chất</strong> để vào tế bào chất của tế bào nội bì.<br>
-        - <strong>Ý nghĩa sinh học quan trọng:</strong> Giúp thực vật <strong>kiểm soát và chọn lọc</strong> được các loại ion khoáng cần thiết, ngăn ngừa các chất độc hại xâm nhập bừa bãi và điều tiết lượng nước đi vào hệ thống mạch gỗ của rễ.
-        
-                </div>
-            </div>
-        
-            <div class="essay-card" id="card-tl-3">
-                <div class="essay-header-row">
-                    <span class="essay-tag">Câu 3 (Tự luận)</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted);">Bài 6. Hô hấp & Ứng dụng thực tiễn</span>
-                    <span class="essay-score">0.75 điểm</span>
-                </div>
-                <div class="essay-title">Khi rễ cây bị ngập úng trong nước thời gian dài, cây sẽ có biểu hiện héo rũ, vàng lá và có thể chết. Dựa vào sự hiểu biết về quá trình hô hấp ở thực vật, hãy giải thích cơ sở sinh lí của hiện tượng trên.</div>
-
-                <div class="table-responsive">
-                    <div class="scroll-hint">👉 Barem thang điểm của Giáo viên</div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 35%;">Nội dung</th>
-                                <th style="width: 15%; text-align:center;">Điểm</th>
-                                <th style="width: 50%;">Tiêu chuẩn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Hiện tượng thiếu oxy ở rễ</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Đất ngập nước làm các khe đất chứa đầy nước, dẫn đến lượng khí oxy (O₂) trong đất bị suy giảm nghiêm trọng, rễ cây bị thiếu oxy để hô hấp hiếu khí.</td></tr><tr><td><strong>Lên men kị khí làm hỏng lông hút</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Rễ chuyển sang hô hấp kị khí (lên men), tạo ra rất ít năng lượng (chỉ 2 ATP/glucose) và tích lũy chất độc hại (ethanol, acid lactic). Thiếu ATP và bị ngộ độc khiến các tế bào lông hút bị tổn thương, suy thoái và thối chết.</td></tr><tr><td><strong>Mất khả năng hút nước/khoáng dẫn đến vàng lá, héo chết</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Mất tế bào lông hút không hút được nước và khoáng (thiếu N, Mg làm diệp lục bị phá hủy gây vàng lá; thiếu nước làm giảm sức trương gây héo rũ). Lá vẫn tiếp tục thoát hơi nước gây mất cân bằng nước nghiêm trọng, dẫn đến cây chết.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="btn-view-ans" onclick="toggleAns('ans-tl-3')">
-                    <span>👁️</span> Xem Bài Làm Mẫu Chi Tiết (Ăn Trọn Điểm)
-                </button>
-
-                <div class="essay-ans-body" id="ans-tl-3">
-                    <div style="color:var(--accent); font-weight:bold; margin-bottom:8px;">Bài làm hoàn chỉnh:</div>
-                    
-        <strong>Cơ sở sinh lí hiện tượng vàng lá, héo rũ và chết khi bị ngập úng (5 bước logic):</strong><br>
-        <ol>
-            <li><strong>Đất bị thiếu oxy (O₂):</strong> Khi đất bị ngập nước lâu ngày, nước lấp đầy các khe hở trong đất, đẩy hết không khí ra ngoài &rarr; <strong>nồng độ O₂ hòa tan trong đất giảm sút nghiêm trọng</strong> (môi trường kị khí).</li>
-            <li><strong>Rễ chuyển sang Lên men kị khí:</strong> Do thiếu oxy, rễ cây không thể hô hấp hiếu khí mà phải chuyển sang con đường lên men. Quá trình này <strong>chỉ tạo ra vỏn vẹn 2 ATP</strong> và tích lũy các sản phẩm độc hại như <strong>rượu ethanol (C₂H₅OH) và acid hữu cơ</strong>.</li>
-            <li><strong>Tế bào lông hút bị thối chết:</strong> Thiếu ATP không đủ năng lượng duy trì hoạt động hút khoáng chủ động; đồng thời rượu ethanol đầu độc phá hủy màng tế bào lông hút, khiến <strong>toàn bộ hệ thống lông hút bị hoại tử và thối rữa</strong>.</li>
-            <li><strong>Lá cây bị chuyển sang màu vàng:</strong> Do mất lông hút, cây không thể hấp thu các ion khoáng thiết yếu, đặc biệt là <strong>Nitơ (N) và Magnesium (Mg)</strong> - nguyên liệu cấu tạo nên phân tử diệp lục. Diệp lục bị phá hủy không được tái tạo khiến <strong>lá cây chuyển sang màu vàng úa</strong>.</li>
-            <li><strong>Cành lá bị héo rũ và cây chết:</strong> Rễ không còn hút được nước, trong khi lá cây trên cành vẫn tiếp tục thoát hơi nước ra ngoài. Cây rơi vào tình trạng <strong>mất cân bằng nước nghiêm trọng</strong>, tế bào mất sức trương làm <strong>lá héo rũ</strong>. Khi vượt quá ngưỡng héo vĩnh viễn, toàn bộ cây sẽ bị chết.</li>
-        </ol>
-        
-                </div>
-            </div>
-        
-            <div class="essay-card" id="card-tl-4a">
-                <div class="essay-header-row">
-                    <span class="essay-tag">Câu 4A (Tự luận - Đề Cô Giáo / Bài 6 SGK Trang 42)</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted);">Bài 6. Hô hấp ở thực vật</span>
-                    <span class="essay-score">0.5 - 0.75 điểm</span>
-                </div>
-                <div class="essay-title">Giải thích cơ sở khoa học của việc ngâm hạt giống vào nước và ủ hạt trước khi gieo trồng.</div>
-
-                <div class="table-responsive">
-                    <div class="scroll-hint">👉 Barem thang điểm của Giáo viên</div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 35%;">Nội dung</th>
-                                <th style="width: 15%; text-align:center;">Điểm</th>
-                                <th style="width: 50%;">Tiêu chuẩn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Cung cấp nước kích hoạt hô hấp</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Hạt khô ở trạng thái ngủ nghỉ (tiềm sinh), độ ẩm dưới 13%, hô hấp tối thiểu. Ngâm nước giúp hạt hút nước trương lên, nước là dung môi hòa tan và môi trường kích hoạt enzyme hô hấp hoạt động mạnh trở lại.</td></tr><tr><td><strong>Cung cấp ATP và chất dinh dưỡng nuôi mầm</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Hô hấp mạnh phân giải tinh bột, lipid dự trữ thành đường, amino acid và giải phóng năng lượng ATP dồi dào cung cấp cho sự phân chia tế bào, kéo dài mầm và rễ mầm.</td></tr><tr><td><strong>Ủ hạt tạo nhiệt độ và oxy tối ưu</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Ủ hạt duy trì nhiệt độ ấm thích hợp (25-35°C) cho enzyme hoạt động tối ưu, đồng thời cung cấp đủ O2 cho hô hấp hiếu khí, giúp hạt nảy mầm nhanh, đều và đồng loạt.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="btn-view-ans" onclick="toggleAns('ans-tl-4a')">
-                    <span>👁️</span> Xem Bài Làm Mẫu Chi Tiết (Ăn Trọn Điểm)
-                </button>
-
-                <div class="essay-ans-body" id="ans-tl-4a">
-                    <div style="color:var(--accent); font-weight:bold; margin-bottom:8px;">Bài làm hoàn chỉnh:</div>
-                    
-        <strong>Cơ sở khoa học của việc ngâm hạt giống vào nước và ủ hạt trước khi gieo trồng (3 ý then chốt):</strong><br>
-        <ol>
-            <li><strong>Cung cấp nước để kích hoạt quá trình trao đổi chất và hô hấp tế bào:</strong>
-                <ul>
-                    <li>Hạt giống khô đang ở <strong>trạng thái ngủ nghỉ (tiềm sinh)</strong>, hàm lượng nước rất thấp (dưới 13%), cường độ hô hấp ở mức tối thiểu chỉ đủ duy trì sự sống.</li>
-                    <li>Khi <strong>ngâm hạt vào nước</strong>, hạt hút nước trương phồng lên, vỏ hạt mềm ra. Nước đóng vai trò là <strong>dung môi hòa tan và chất tham gia trực tiếp</strong> vào các phản ứng sinh hóa, giúp <strong>đánh thức và kích hoạt các hệ enzyme thủy phân</strong>, làm <strong>cường độ hô hấp tế bào tăng vọt</strong>.</li>
-                </ul>
-            </li>
-            <li><strong>Cung cấp năng lượng ATP và sản phẩm trung gian để mầm sinh trưởng:</strong>
-                <ul>
-                    <li>Quá trình hô hấp hiếu khí được kích hoạt sẽ phân giải các hợp chất hữu cơ phức tạp dự trữ trong nội nhũ hoặc lá mầm (như tinh bột, lipid, protein) thành các chất đơn giản (như glucose, amino acid).</li>
-                    <li>Đồng thời giải phóng <strong>nguồn năng lượng ATP dồi dào</strong> và các sản phẩm trung gian để cung cấp cho sự phân chia, phân hóa và kéo dài của tế bào, thúc đẩy <strong>chồi mầm và rễ mầm đâm chồi nhanh chóng</strong>.</li>
-                </ul>
-            </li>
-            <li><strong>Ý nghĩa của việc ủ hạt (Cung cấp nhiệt độ và Oxy thích hợp):</strong>
-                <ul>
-                    <li>Sau khi ngâm, việc <strong>ủ hạt</strong> tạo ra môi trường có <strong>nhiệt độ ấm thích hợp (khoảng 25 - 35°C)</strong>, là điều kiện tối ưu để các enzyme hoạt động với vận tốc cao nhất.</li>
-                    <li>Ủ hạt trong điều kiện thông thoáng còn đảm bảo <strong>cung cấp đầy đủ dưỡng khí Oxy (O₂)</strong> cho hô hấp hiếu khí, tránh tình trạng hạt bị ngâm quá lâu trong nước dẫn đến yếm khí lên men rượu làm thối mầm.</li>
-                    <li><em>Kết quả:</em> Giúp hạt giống <strong>nảy mầm nhanh, đều, đồng loạt</strong>, cây con khỏe mạnh, rút ngắn thời gian sinh trưởng và nâng cao tỉ lệ sống khi gieo ngoài đồng ruộng.</li>
-                </ul>
-            </li>
-        </ol>
-        
-                </div>
-            </div>
-        
-            <div class="essay-card" id="card-tl-4b">
-                <div class="essay-header-row">
-                    <span class="essay-tag">Câu 4B (Tự luận - Vở Viết Tay Học Sinh / Bài 5 SGK)</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted);">Bài 5. Thúc đẩy quang hợp & Nông nghiệp công nghệ cao</span>
-                    <span class="essay-score">0.5 - 0.75 điểm</span>
-                </div>
-                <div class="essay-title">Giải thích cơ sở khoa học của việc sử dụng hệ thống đèn LED chuyên dụng trong trồng trọt nông nghiệp hiện đại (nhà lưới, nhà màng, nông nghiệp thẳng đứng).</div>
-
-                <div class="table-responsive">
-                    <div class="scroll-hint">👉 Barem thang điểm của Giáo viên</div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 35%;">Nội dung</th>
-                                <th style="width: 15%; text-align:center;">Điểm</th>
-                                <th style="width: 50%;">Tiêu chuẩn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Cơ sở quang phổ hấp thụ của diệp lục</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Diệp lục hấp thụ mạnh nhất ở 2 vùng quang phổ: Đỏ (640-660 nm) xúc tiến quang hợp, ra hoa và Xanh tím (430-450 nm) kích thích tổng hợp protein, mở khí khổng. Đèn LED phát đúng các bước sóng mục tiêu này, loại bỏ các dải quang phổ lãng phí.</td></tr><tr><td><strong>Ưu điểm kỹ thuật & ứng dụng thực tiễn</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.25đ</td><td>Đèn LED tỏa nhiệt rất thấp (không làm cháy lá khi treo sát), tiết kiệm 60-70% điện năng, tuổi thọ cao; cho phép điều khiển quang chu kì để ép ra hoa trái vụ, canh tác nhiều tầng trong nhà kín (Vertical farming) đạt năng suất tối đa.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button class="btn-view-ans" onclick="toggleAns('ans-tl-4b')">
-                    <span>👁️</span> Xem Bài Làm Mẫu Chi Tiết (Ăn Trọn Điểm)
-                </button>
-
-                <div class="essay-ans-body" id="ans-tl-4b">
-                    <div style="color:var(--accent); font-weight:bold; margin-bottom:8px;">Bài làm hoàn chỉnh:</div>
-                    
-        <strong>Cơ sở khoa học của việc ứng dụng đèn LED trong nông nghiệp hiện đại (4 ý then chốt):</strong><br>
-        <ol>
-            <li><strong>Phù hợp tối ưu với quang phổ hấp thụ của hệ sắc tố diệp lục:</strong>
-                <ul>
-                    <li>Diệp lục của cây hấp thụ năng lượng ánh sáng tập trung ở 2 dải bước sóng:
-                        <ul>
-                            <li><strong>Vùng ánh sáng Đỏ (640 - 660 nm):</strong> Có hiệu suất quang hợp cao nhất, kích thích hình thành mầm hoa, vươn dài chồi và tăng cường tích lũy carbohydrate (đường, tinh bột).</li>
-                            <li><strong>Vùng ánh sáng Xanh tím (430 - 450 nm):</strong> Kích thích khí khổng mở rộng đón nhận CO₂, định hướng sinh tổng hợp protein và amino acid.</li>
-                        </ul>
-                    </li>
-                    <li>Đèn LED có thể tùy chỉnh chính xác tỉ lệ <strong>Đỏ : Xanh tím</strong> phù hợp từng loại cây, <strong>loại bỏ hoàn toàn các dải quang phổ lãng phí</strong> mà cây không dùng.</li>
-                </ul>
-            </li>
-            <li><strong>Nguồn sáng lạnh (Nhiệt độ tỏa ra cực thấp):</strong> Không làm nóng cháy tán lá, cho phép <strong>treo đèn sát tán cây</strong> để tận dụng tối đa quang năng mà không gây sốc nhiệt hay héo mép lá.</li>
-            <li><strong>Tiết kiệm điện năng và tuổi thọ cao:</strong> Tiết kiệm <strong>50 - 70% điện</strong> so với đèn sợi đốt/huỳnh quang, tuổi thọ bền bỉ trên 50.000 giờ thắp sáng.</li>
-            <li><strong>Chủ động điều khiển quang chu kì ngày/đêm:</strong> Giúp người nông dân <strong>ép cây ra hoa trái vụ</strong> (như thắp đèn cho thanh long, hoa cúc), là nền tảng cốt lõi của <strong>nông nghiệp thẳng đứng nhiều tầng (Vertical Farming)</strong> trong đô thị.</li>
-        </ol>
-        
-                </div>
-            </div>
-        
+            <div style="margin-top:14px;">
+                <div style="color:var(--accent); font-weight:700; font-size:14px; margin-bottom:6px;">🗣️ Cách trả lời bằng từ ngữ dễ hiểu (Ghi trọn 1.0 điểm):</div>
+                
+        <div class="note-box">
+            <p><strong>1. Cơ sở của việc ngâm hạt vào nước (0.5 điểm):</strong></p>
+            <ul>
+                <li>Hạt giống khô đang ở <strong>trạng thái tiềm sinh</strong> (độ ẩm cực thấp dưới 13%, hô hấp gần như ngừng trệ).</li>
+                <li>Khi ngâm vào nước, hạt hút nước trương to lên, làm mềm lớp vỏ hạt và <strong>kích hoạt các enzyme hô hấp hoạt động trở lại</strong> để phân giải chất dự trữ tạo năng lượng ATP cho mầm non phát triển.</li>
+            </ul>
+            <p style="margin-top:8px;"><strong>2. Cơ sở của việc ủ hạt (0.5 điểm):</strong></p>
+            <ul>
+                <li>Ủ hạt giúp duy trì <strong>nhiệt độ ấm thích hợp (khoảng 25 - 35°C)</strong>, là nhiệt độ tối ưu cho các enzyme hô hấp hoạt động mạnh nhất.</li>
+                <li>Đồng thời quá trình ủ hạt giữ được độ ẩm và tạo <strong>độ thoáng khí có đủ Oxy</strong> cho hô hấp hiếu khí (tránh ứ đọng nước làm mầm bị thối vì lên men) $ightarrow$ Giúp hạt nảy mầm nhanh, khỏe mạnh và đồng loạt.</li>
+            </ul>
         </div>
+        
+            </div>
+        </div>
+    
+        <div class="essay-card" id="card-tl-4b">
+            <div class="essay-header-row">
+                <span class="essay-tag">TL-4B</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">Bài 5. Nâng cao năng suất cây trồng</span>
+                <span class="essay-score">1.0 điểm</span>
+            </div>
+            <div class="essay-title">Câu 5: Giải thích cơ sở khoa học của việc sử dụng hệ thống đèn LED chuyên dụng trong trồng trọt nông nghiệp hiện đại (nhà màng, nông nghiệp công nghệ cao).</div>
 
-        <!-- TAB 3: 5 BẢNG SO SÁNH -->
-        <div id="tab-compare" class="tab-pane">
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Tiêu chí chấm</th>
+                            <th style="width: 15%; text-align:center;">Điểm</th>
+                            <th style="width: 50%;">Nội dung chuẩn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Phù hợp phổ hấp thụ của diệp lục (đỏ và xanh)</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Đèn LED phát đúng bước sóng ánh sáng Đỏ (660nm) giúp quang hợp mạnh và Xanh dương (450nm) giúp tổng hợp protein.</td></tr><tr><td><strong>Hiệu quả năng lượng, tỏa nhiệt thấp và quang chu kì</strong></td><td style='color:var(--accent); font-weight:bold; text-align:center;'>0.5 đ</td><td>Tiết kiệm điện, tỏa nhiệt thấp không làm cháy lá, cho phép đặt sát tán cây và điều khiển quang chu kì ra hoa trái vụ.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:14px;">
+                <div style="color:var(--accent); font-weight:700; font-size:14px; margin-bottom:6px;">🗣️ Cách trả lời bằng từ ngữ dễ hiểu (Ghi trọn 1.0 điểm):</div>
+                
+        <div class="note-box">
+            <ol style="margin-left:20px; line-height:1.7;">
+                <li><strong>Phát đúng bước sóng ánh sáng cây cần:</strong> Đèn LED phát ra đúng dải ánh sáng mà diệp lục của lá cây hấp thụ mạnh nhất, gồm <strong>ánh sáng Đỏ (~660 nm)</strong> giúp quang hợp tạo sinh khối tối đa và <strong>ánh sáng Xanh dương (~450 nm)</strong> giúp cây tổng hợp protein phát triển lá to dày.</li>
+                <li><strong>Tỏa nhiệt rất thấp:</strong> Đèn LED không tỏa nhiệt nóng như đèn sợi đốt, không làm bỏng lá hay héo cây, có thể lắp đặt sát vào các giàn cây trồng nhiều tầng trong nhà kín.</li>
+                <li><strong>Tiết kiệm điện năng vượt trội:</strong> Tiết kiệm từ 60 - 80% lượng điện tiêu thụ và có tuổi thọ sử dụng rất lâu dài.</li>
+                <li><strong>Chủ động điều khiển thời gian chiếu sáng (quang chu kì):</strong> Cho phép con người điều chỉnh giờ chiếu sáng để kích thích cây sinh trưởng quanh năm hoặc kích thích ra hoa trái vụ (như thắp đèn cho thanh long, hoa cúc).</li>
+            </ol>
+        </div>
+        
+            </div>
+        </div>
+    
+            </div>
+
+            <!-- TAB 3: BẢNG SO SÁNH -->
+            <div id="tab-compare" class="tab-pane">
+                id="tab-compare" class="tab-pane">
+                id="tab-compare" class="tab-pane">
             <div class="hero-banner">
                 <h2>5 Bảng So Sánh Cốt Lõi • In Đậm Thuộc Lòng Nhanh</h2>
                 <p>Khắc phục 100% bẫy sai ở các câu hỏi trắc nghiệm Đúng/Sai trong đề thi ngày mai.</p>
@@ -2366,7 +2112,15 @@
         </div>
 
         <!-- TAB 4: ĐỀ THI THỬ 45 PHÚT -->
-        <div id="tab-exam" class="tab-pane">
+        <div 
+
+            <!-- TAB 4: THI THỬ 45P -->
+            <div 
+
+            <!-- TAB 4: THI THỬ 45P -->
+            <div id="tab-exam" class="tab-pane">
+                id="tab-exam" class="tab-pane">
+                id="tab-exam" class="tab-pane">
             <!-- STICKY EXAM BAR -->
             <div class="exam-sticky-bar">
                 <div class="timer-badge">
@@ -3133,7 +2887,15 @@
         </div>
 
         <!-- TAB 5: MA TRẬN & MẸO THI -->
-        <div id="tab-matrix" class="tab-pane">
+        <div 
+
+            <!-- TAB 5: MA TRẬN ĐỀ -->
+            <div 
+
+            <!-- TAB 5: MA TRẬN ĐỀ -->
+            <div id="tab-matrix" class="tab-pane">
+                id="tab-matrix" class="tab-pane">
+                id="tab-matrix" class="tab-pane">
             <div class="hero-banner">
                 <h2>Ma Trận Đề Thi Giữa Kì I Năm Học 2026 - 2027</h2>
                 <p>Tỉ lệ 70% Trắc nghiệm (7.0 điểm) - 30% Tự luận (3.0 điểm) • Thời gian làm bài 45 phút.</p>
@@ -3225,10 +2987,12 @@
                 </div>
             </div>
         </div>
+        
+        
         </main>
     </div> <!-- END app-layout -->
 
-    <!-- BOTTOM APP NAVIGATION BAR (DÀNH CHO ĐIỆN THOẠI) -->
+    <!-- BOTTOM APP NAVIGATION BAR (MOBILE) -->
     <nav class="bottom-nav">
         <div class="nav-item active" onclick="switchMasterTab('tab-theory', this)">
             <span class="nav-item-icon">🌿</span>
@@ -3252,8 +3016,9 @@
         </div>
     </nav>
 
-    <!-- JAVASCRIPT LOGIC TỰ CHỨA HOÀN TOÀN -->
     <script>
+
+
         const EXAM_DATA = {"title": "ĐỀ THI THỬ GIỮA HỌC KÌ I - MÔN SINH HỌC 11", "subtitle": "Năm học 2026 - 2027 • Bộ sách Kết Nối Tri Thức Với Cuộc Sống", "duration": 45, "total_score": 10.0, "part1": [{"id": "p1_q1", "q": "Câu 1. Quá trình trao đổi chất và chuyển hóa năng lượng ở sinh vật có bao nhiêu dấu hiệu đặc trưng?", "options": ["A. 5 dấu hiệu.", "B. 6 dấu hiệu.", "C. 7 dấu hiệu.", "D. 8 dấu hiệu."], "answer": 2, "explain": "Đáp án C. Gồm 7 dấu hiệu: Thu nhận chất, vận chuyển chất, biến đổi chất, tổng hợp và tích lũy năng lượng, phân giải và giải phóng năng lượng, đào thải chất cặn bã, và điều hòa."}, {"id": "p1_q2", "q": "Câu 2. Nhóm sinh vật nào sau đây có phương thức dinh dưỡng là hóa tự dưỡng?", "options": ["A. Cây xanh và vi khuẩn lam.", "B. Nấm rơm và nấm men.", "C. Vi khuẩn nitrat hóa và vi khuẩn oxy hóa lưu huỳnh.", "D. Động vật ăn cỏ và động vật ăn thịt."], "answer": 2, "explain": "Đáp án C. Vi khuẩn nitrat hóa (NO₂⁻ &rarr; NO₃⁻) và oxy hóa lưu huỳnh sử dụng năng lượng từ phản ứng oxy hóa các chất vô cơ để đồng hóa CO₂, thuộc phương thức hóa tự dưỡng."}, {"id": "p1_q3", "q": "Câu 3. Dựa vào sơ đồ chuyển hóa năng lượng trong sinh giới, giai đoạn nào trực tiếp biến đổi quang năng thành hóa năng tích lũy trong các hợp chất hữu cơ?", "options": ["A. Giai đoạn tổng hợp.", "B. Giai đoạn phân giải.", "C. Giai đoạn huy động năng lượng.", "D. Giai đoạn tiêu hao nhiệt năng."], "answer": 0, "explain": "Đáp án A. Giai đoạn tổng hợp (chủ yếu là quang hợp ở thực vật) hấp thụ quang năng và biến đổi thành hóa năng trong các liên kết hóa học của phân tử hữu cơ."}, {"id": "p1_q4", "q": "Câu 4. Trong chuỗi thức ăn sinh thái, sinh vật tự dưỡng đóng vai trò cốt lõi nào sau đây?", "options": ["A. Phân giải chất mùn bã hữu cơ thành chất vô cơ.", "B. Sinh vật sản xuất, mở đầu chuỗi thức ăn và cung cấp oxy cho sinh quyển.", "C. Tiêu thụ sinh vật sản xuất để tạo năng lượng.", "D. Đào thải chất độc hại ra khỏi chu trình sinh địa hóa."], "answer": 1, "explain": "Đáp án B. Sinh vật tự dưỡng là sinh vật sản xuất, tổng hợp chất hữu cơ nuôi sống toàn bộ sinh giới dị dưỡng và thải oxy duy trì sự sống."}, {"id": "p1_q5", "q": "Câu 5. Trong cơ thể thực vật, nước KHÔNG đảm nhận vai trò sinh lí nào sau đây?", "options": ["A. Thành phần cấu tạo nên chất nguyên sinh và tế bào thực vật.", "B. Dung môi hòa tan và vận chuyển các chất dinh dưỡng.", "C. Trực tiếp cung cấp năng lượng ATP cho các phản ứng sinh hóa.", "D. Tham gia điều hòa thân nhiệt của cây qua thoát hơi nước."], "answer": 2, "explain": "Đáp án C. Nước không trực tiếp cung cấp năng lượng ATP; ATP được tạo ra thông qua các phản ứng quang hóa trong quang hợp hoặc oxy hóa sinh học trong hô hấp."}, {"id": "p1_q6", "q": "Câu 6. Dòng mạch rây (phloem) trong thân cây có đặc điểm nào sau đây?", "options": ["A. Gồm các tế bào chết đã hóa gỗ, chỉ vận chuyển nước và muối khoáng.", "B. Vận chuyển chủ yếu là đường sucrose từ cơ quan nguồn đến cơ quan chứa.", "C. Chỉ vận chuyển chất theo một chiều duy nhất từ rễ lên chồi ngọn.", "D. Động lực chính là lực hút do thoát hơi nước ở lá tạo ra."], "answer": 1, "explain": "Đáp án B. Dòng mạch rây cấu tạo từ tế bào sống (ống rây và tế bào kèm), vận chuyển dịch hữu cơ (chủ yếu là sucrose) từ cơ quan nguồn (lá) đến cơ quan dự trữ (rễ, quả, chồi)."}, {"id": "p1_q7", "q": "Câu 7. Nước được hấp thụ từ dung dịch đất vào tế bào lông hút của rễ theo cơ chế nào?", "options": ["A. Vận chuyển chủ động ngược chiều gradient nồng độ tiêu tốn ATP.", "B. Thẩm thấu thụ động từ môi trường nhược trương vào dịch tế bào ưu trương.", "C. Nhập bào thông qua sự biến dạng màng sinh chất.", "D. Bơm ion chủ động qua các kênh protein xuyên màng."], "answer": 1, "explain": "Đáp án B. Nước luôn luôn thẩm thấu thụ động từ nơi có thế nước cao (đất nhược trương) vào nơi có thế nước thấp (dịch bào lông hút ưu trương), không tiêu tốn ATP."}, {"id": "p1_q8", "q": "Câu 8. Hiện tượng 'rỉ nhựa' và 'ứ giọt' quan sát được ở thực vật là bằng chứng chứng minh sự tồn tại của:", "options": ["A. Động lực hút do thoát hơi nước ở lá.", "B. Động lực đẩy của rễ do áp suất rễ tạo ra.", "C. Lực liên kết hydrogen giữa các phân tử nước.", "D. Lực bám giữa phân tử nước với thành mạch gỗ."], "answer": 1, "explain": "Đáp án B. Áp suất rễ (động lực đẩy phía dưới) chủ động đẩy cột nước từ rễ lên thân, gây ra hiện tượng rỉ nhựa khi cắt ngang thân và hiện tượng ứ giọt mép lá trong đêm ẩm ướt."}, {"id": "p1_q9", "q": "Câu 9. Sắc tố quang hợp nào sau đây trực tiếp tham gia vào việc chuyển hóa năng lượng ánh sáng thành năng lượng hóa học trong ATP và NADPH?", "options": ["A. Diệp lục a ở trung tâm phản ứng.", "B. Diệp lục b.", "C. Carotene.", "D. Xanthophyll."], "answer": 0, "explain": "Đáp án A. Chỉ có diệp lục a ở trung tâm phản ứng (P680, P700) mới có khả năng giải phóng electron kích động để chuyển hóa quang năng thành hóa năng; các sắc tố khác chỉ hấp thụ và truyền năng lượng."}, {"id": "p1_q10", "q": "Câu 10. Trong pha sáng của quá trình quang hợp, khí oxy (O₂) được giải phóng có nguồn gốc từ phân tử nào?", "options": ["A. Phân tử CO₂.", "B. Phân tử H₂O.", "C. Phân tử Glucose (C₆H₁₂O₆).", "D. Phân tử Ribulose 1,5-bisphosphate."], "answer": 1, "explain": "Đáp án B. Khí O₂ sinh ra từ phản ứng quang phân li nước diễn ra ở xoang thylakoid: 2H₂O &rarr; 4H⁺ + 4e⁻ + O₂."}, {"id": "p1_q11", "q": "Câu 11. Sản phẩm nào của pha sáng được sử dụng trực tiếp để cung cấp năng lượng và lực khử cho chu trình Calvin trong pha tối?", "options": ["A. O₂ và Glucose.", "B. ATP và NADPH.", "C. ADP và NADP⁺.", "D. Acid hữu cơ và Carotenoid."], "answer": 1, "explain": "Đáp án B. Pha sáng tổng hợp ra ATP (cung cấp năng lượng) và NADPH (cung cấp lực khử) để chuyển sang stroma thực hiện pha tối khử CO₂ thành đường."}, {"id": "p1_q12", "q": "Câu 12. Cây ngô (bắp) và cây mía thuộc nhóm thực vật nào sau đây?", "options": ["A. Thực vật C3.", "B. Thực vật C4.", "C. Thực vật CAM.", "D. Thực vật kí sinh."], "answer": 1, "explain": "Đáp án B. Ngô, mía, cao lương, rau dền là các đại diện tiêu biểu của nhóm thực vật C4, thích nghi với vùng khí hậu nhiệt đới nắng nóng."}, {"id": "p1_q13", "q": "Câu 13. Thực vật CAM (như dứa, xương rồng, thanh long) có đặc điểm thích nghi đặc biệt nào với môi trường sa mạc khô hạn?", "options": ["A. Khí khổng mở vào ban ngày và đóng hoàn toàn vào ban đêm.", "B. Khí khổng đóng vào ban ngày và mở vào ban đêm để lấy CO₂.", "C. Không có chu trình Calvin trong pha tối.", "D. Không có giai đoạn quang phân li nước trong pha sáng."], "answer": 1, "explain": "Đáp án B. Để tránh mất nước do bốc hơi dưới ánh nắng gay gắt ban ngày, thực vật CAM chủ động đóng khí khổng ban ngày và chỉ mở khí khổng vào ban đêm để hấp thụ CO₂."}, {"id": "p1_q14", "q": "Câu 14. Quá trình hô hấp ở thực vật diễn ra phương trình tổng quát nào sau đây?", "options": ["A. 6CO₂ + 6H₂O &rarr; C₆H₁₂O₆ + 6O₂.", "B. C₆H₁₂O₆ + 6O₂ &rarr; 6CO₂ + 6H₂O + Năng lượng (ATP + Nhiệt).", "C. C₆H₁₂O₆ &rarr; 2C₂H₅OH + 2CO₂ + Nhiệt.", "D. 6CO₂ + 12H₂O &rarr; C₆H₁₂O₆ + 6O₂ + 6H₂O."], "answer": 1, "explain": "Đáp án B. Phương trình hô hấp hiếu khí là quá trình oxy hóa glucose thành CO₂, H₂O và giải phóng năng lượng (ATP + nhiệt)."}, {"id": "p1_q15", "q": "Câu 15. Giai đoạn đường phân (glycolysis) trong quá trình hô hấp tế bào diễn ra tại vị trí nào?", "options": ["A. Màng trong của ti thể.", "B. Chất nền (matrix) của ti thể.", "C. Bào tương (Tế bào chất).", "D. Xoang thylakoid của lục lạp."], "answer": 2, "explain": "Đáp án C. Giai đoạn đường phân biến đổi 1 phân tử glucose thành 2 phân tử pyruvate diễn ra ngay trong tế bào chất (bào tương)."}, {"id": "p1_q16", "q": "Câu 16. Để bảo quản các loại hạt giống nông sản (lúa giống, ngô giống, đậu) được lâu dài, biện pháp kĩ thuật nào sau đây là quan trọng nhất?", "options": ["A. Ngâm hạt vào nước ấm để kích thích trao đổi chất.", "B. Phơi khô hoặc sấy khô hạt để hạ độ ẩm xuống mức an toàn (< 13%).", "C. Ủ hạt kín trong bao nilon ẩm để tạo môi trường kị khí.", "D. Tăng nồng độ khí oxy (O₂) tối đa trong kho bảo quản."], "answer": 1, "explain": "Đáp án B. Nước là dung môi và điều kiện bắt buộc để enzyme hô hấp hoạt động. Phơi khô hạt làm giảm độ ẩm xuống dưới 13%, đưa hô hấp về trạng thái tối thiểu (tiềm sinh) giúp hạt giữ nguyên sức nảy mầm nhiều năm."}], "part2": [{"id": "p2_q1", "title": "Câu 1 (Đúng/Sai). Về quá trình thoát hơi nước và cơ chế đóng mở khí khổng ở lá cây:", "statements": [{"text": "a) Nước thoát qua khí khổng chiếm phần lớn lượng nước thoát ra từ lá và có thể được điều tiết vận tốc mở đóng.", "ans": true, "exp": "Đúng. Thoát hơi nước qua khí khổng chiếm 90-98% tổng lượng nước thoát ra và được điều tiết thông qua hoạt động đóng mở lỗ khí."}, {"text": "b) Khí khổng được cấu tạo bởi hai tế bào hình hạt đậu có mép vách phía trong mỏng và mép vách phía ngoài rất dày.", "ans": false, "exp": "Sai. Ngược lại: mép vách phía TRONG (giáp khe lỗ) rất DÀY, mép vách phía NGOÀI mỏng và có tính đàn hồi cao."}, {"text": "c) Khi tế bào hạt đậu no nước, vách ngoài dãn dài uốn cong ra xa làm mép vách trong cong theo, dẫn đến khí khổng mở ra.", "ans": true, "exp": "Đúng. Đây là cơ chế trương nước làm vách mỏng uốn cong, kéo mép vách dày cong theo mở ra khe khí khổng."}, {"text": "d) Trong điều kiện hạn hán thiếu nước, hormone abscisic acid (ABA) giảm mạnh kích thích khí khổng mở rộng tối đa.", "ans": false, "exp": "Sai. Khi hạn hán, hàm lượng hormone ABA TĂNG CAO kích thích bơm ion thoát ra khỏi tế bào, làm tế bào hạt đậu mất nước xẹp xuống đóng khí khổng để giữ nước."}]}, {"id": "p2_q2", "title": "Câu 2 (Đúng/Sai). Về quá trình quang hợp và các nhóm thực vật C3, C4, CAM:", "statements": [{"text": "a) Pha sáng chỉ diễn ra khi có ánh sáng và xảy ra trên màng thylakoid của lục lạp, sản sinh ra ATP, NADPH và khí Oxy.", "ans": true, "exp": "Đúng. Đây là đặc điểm bản chất của pha sáng trên màng thylakoid."}, {"text": "b) Chất nhận CO₂ đầu tiên ở thực vật C3 là phân tử PEP (3C), còn ở thực vật C4 là RuBP (5C).", "ans": false, "exp": "Sai. Ngược lại: Ở thực vật C3 chất nhận đầu tiên là RuBP (5C); còn ở thực vật C4 và CAM chất nhận đầu tiên là PEP (3C)."}, {"text": "c) Thực vật C4 có 2 loại lục lạp nằm ở 2 loại tế bào khác nhau: tế bào mô giậu và tế bào bao bó mạch.", "ans": true, "exp": "Đúng. Đây là giải phẫu lá Kranz đặc trưng của thực vật C4, giúp ngăn chặn hiện tượng hô hấp sáng."}, {"text": "d) Thực vật CAM cố định CO₂ vào ban đêm và tiến hành chu trình Calvin tổng hợp đường vào ban ngày.", "ans": true, "exp": "Đúng. Thực vật CAM tách rời quá trình cố định CO2 theo thời gian: ban đêm mở khí khổng cố định CO2 thành acid malic, ban ngày đóng khí khổng phân giải acid lấy CO2 cho chu trình Calvin."}]}], "part3": [{"id": "p3_q1", "q": "Câu 1. Quá trình trao đổi chất và chuyển hóa năng lượng ở sinh vật có bao nhiêu dấu hiệu đặc trưng cơ bản? (Điền một chữ số nguyên)", "accepted": ["7"], "explain": "Đáp án: 7. Gồm: (1) Thu nhận chất, (2) Vận chuyển chất, (3) Biến đổi chất, (4) Tổng hợp chất & tích lũy năng lượng, (5) Phân giải chất & giải phóng năng lượng, (6) Đào thải chất, (7) Điều hòa."}, {"id": "p3_q2", "q": "Câu 2. Dòng mạch gỗ trong thân cây được vận chuyển lên ngọn nhờ sự phối hợp của bao nhiêu động lực chính? (Điền một chữ số nguyên)", "accepted": ["3"], "explain": "Đáp án: 3. Gồm 3 động lực: (1) Động lực hút của lá do thoát hơi nước, (2) Động lực đẩy của rễ do áp suất rễ, (3) Động lực trung gian do lực liên kết phân tử nước."}, {"id": "p3_q3", "q": "Câu 3. Khi dòng nước và ion khoáng đi từ lông hút vào đến lớp nội bì của rễ, con đường nào bị đai Caspary chặn lại hoàn toàn? (Điền tên con đường)", "accepted": ["gian bào", "con đường gian bào", "apoplast"], "explain": "Đáp án: 'gian bào' (hoặc 'con đường gian bào' / 'apoplast'). Đai Caspary chặn con đường gian bào, buộc dòng dịch chuyển sang con đường tế bào chất."}, {"id": "p3_q4", "q": "Câu 4. Trong quá trình hô hấp hiếu khí ở thực vật, khi phân giải hoàn toàn 1 phân tử Glucose sẽ tích lũy được năng lượng ròng tối đa là bao nhiêu phân tử ATP? (Điền số lượng hoặc khoảng, ví dụ: 30-32 hoặc 32)", "accepted": ["30-32", "32", "30", "30 - 32", "30 đến 32"], "explain": "Đáp án: 30 - 32 ATP (hoặc 32 ATP theo sách giáo khoa mới Kết Nối Tri Thức)."}]};
         const masterAnswers = {
             p1: {},
@@ -3580,6 +3345,8 @@
             startMasterTimer();
             console.log("Sinh học 11 Chuẩn SGK App Ready.");
         });
+    
+    
     </script>
 </body>
 </html>
