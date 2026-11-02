@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/sinh",
+      "dest": "/KHO_KIEN_THUC_SINH_HOC_11_CHUAN_SGK.html"
+    },
+    {
+      "src": "/toan-hoa-ly",
+      "dest": "/KHO_KIEN_THUC_TOAN_HOA_LY_11.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
